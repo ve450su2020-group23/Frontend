@@ -21,6 +21,13 @@
 
 ---
 
+## Versions 
+*   @material-ui/core: ^4.10.2
+*   react: ^16.13.1
+*   recharts: ^1.8.5 
+*   node: v12.18.1
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
