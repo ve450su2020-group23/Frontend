@@ -8,8 +8,13 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import clsx from  'clsx';
-import './App.css';
+import clsx from 'clsx';
+import './static/css/App.css';
+
+
+import Live from './Components/Live'
+import Charts from './Components/Charts'
+
 
 
 function Copyright() {
@@ -60,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   deliverables: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
 
   }
+
 }));
 
 const footers = [
@@ -89,7 +94,7 @@ export default function App() {
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            VE450 Group23 Real-Time On-Device Flow Statistics Detection and Prediction 
+            VE450 Group23 Real-Time On-Device Flow Statistics Detection and Prediction
           </Typography>
           <nav>
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
@@ -105,28 +110,54 @@ export default function App() {
       {/* Hero unit */}
       <Container maxWidth="lg" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-        Automatic human traffic statistics collection and prediction with entrances detection.
+          Automatic human traffic statistics collection and prediction with entrances detection.
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p">
-        Due to COVID-19, multiple human traffic statistics collection methods are needed to work
-         in parallel for different scenarios.  The goal of our project is to use Computer Vision with
-           Programmable logic device to achieve automatic human traffic statistics collection.
+          Due to COVID-19, multiple human traffic statistics collection methods are needed to work
+          in parallel for different scenarios.  The goal of our project is to use Computer Vision with
+          Programmable logic device to achieve automatic human traffic statistics collection.
         </Typography>
       </Container>
       {/* End hero unit */}
 
-      <Container maxWidth="xl" component="main" className={clsx(classes.footer, classes.deliverables)}>
+      <Container maxWidth="xl" component="main" className={clsx(classes.footer,)}>
         <div className="myContainer">
           <h2>
-        Deliverable 1: People counting system with single human-defined entrance
+            Deliverable 1: People counting system with single human-defined entrance
           </h2>
+
+          <div className="content">
+
+            <div className="column">
+              <div className="content-box">
+                <h3>
+                  Human traffic statistics
+            </h3 >
+                < Charts />
+              </div>
+
+
+            </div>
+
+            <div className="column">
+              <div className="content-box">
+                <h3>
+                  Live
+            </h3>
+              < Live />
+              </div>
+            </div>
+
+          </div>
+
+
         </div>
 
       </Container>
-      <Container maxWidth="xl" component="main" className={clsx(classes.footer, classes.deliverables)}>
+      <Container maxWidth="xl" component="main" className={clsx(classes.footer,)}>
         <div className="myContainer">
           <h2>
-        Deliverable 2: People counting system with automatic entrances detection and separated counting
+            Deliverable 2: People counting system with automatic entrances detection and separated counting
           </h2>
         </div>
 
