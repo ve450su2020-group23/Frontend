@@ -1,6 +1,7 @@
 import React from 'react'
 import MyLine from './SimpleLineCharts'
 import MyBar from './PositiveAndNegativeBarChart'
+import MyTable from './Table'
 import { ButtonGroup, Button } from '@material-ui/core';
 // import {CHARTYPES} from 'static/constant/CONSTANT'
 import {CHART_TYPES, TEST_DATA} from 'static/constant/CONSTANT'
@@ -28,9 +29,8 @@ export default class Charts extends React.Component {
       this.setState({
         show_data_index,
       })
-      console.log(this.state.show_data_index);
       
-    }, 2000);
+    }, 4000);
   }
 
   buttonClick(id) {
@@ -51,9 +51,8 @@ export default class Charts extends React.Component {
       i =  i % data.length;
       show_data.push(data[i])
     }
-    console.log(show_data)
 
-    var chart;
+    var chart
     if (chartIndex == 0) {
       chart = < MyLine data={show_data} key={show_data_index} />
     }
@@ -61,7 +60,11 @@ export default class Charts extends React.Component {
       chart = < MyBar data={show_data} key={show_data_index} />
     }
     else {
-      chart = <div></div>
+      //chart = < MyTable data={data} key={show_data_index}/>
+      var reverse_data = JSON.parse(JSON.stringify(data.reverse()))
+      
+      chart = < MyTable data={reverse_data} />
+      console.log(data)
     }
 
     return (

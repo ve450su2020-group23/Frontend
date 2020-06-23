@@ -2,7 +2,6 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
-import { Fab } from '@material-ui/core';
 
 
 
@@ -25,7 +24,7 @@ export default class MyLine extends React.Component {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="Timestamp" />
         <YAxis />
         <Tooltip />
         <Legend />

@@ -14,7 +14,7 @@ export default class MyBar extends React.Component {
     }
   render() {
 
-    var signed_data = this.state.data;
+    var signed_data = JSON.parse(JSON.stringify(this.state.data));
 
     
     for (var i = 0; i < signed_data.length; i++) {
@@ -33,7 +33,7 @@ export default class MyBar extends React.Component {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="Timestamp" />
         <YAxis />
         <Tooltip />
         <Legend />
