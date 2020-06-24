@@ -11,9 +11,8 @@ import Box from '@material-ui/core/Box';
 import clsx from 'clsx';
 import './static/css/App.css';
 
-
-import Live from './Components/Live'
-import Charts from './Components/Charts'
+import D1 from './Components/D1.js'
+import D2 from './Components/D2.js'
 
 
 
@@ -55,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
@@ -63,10 +61,6 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
-
-  deliverables: {
-
-  }
 
 }));
 
@@ -121,46 +115,11 @@ export default function App() {
       {/* End hero unit */}
 
       <Container maxWidth="xl" component="main" className={clsx(classes.footer,)}>
-        <div className="myContainer">
-          <h2>
-            Deliverable 1: People counting system with single human-defined entrance
-          </h2>
-
-          <div className="content">
-
-            <div className="column">
-              <div className="content-box">
-                <h3>
-                  Human traffic statistics
-            </h3 >
-                < Charts />
-              </div>
-
-
-            </div>
-
-            <div className="column">
-              <div className="content-box">
-                <h3>
-                  Live
-            </h3>
-              < Live />
-              </div>
-            </div>
-
-          </div>
-
-
-        </div>
-
+        < D1/>
       </Container>
-      <Container maxWidth="xl" component="main" className={clsx(classes.footer,)}>
-        <div className="myContainer">
-          <h2>
-            Deliverable 2: People counting system with automatic entrances detection and separated counting
-          </h2>
-        </div>
 
+      <Container maxWidth="xl" component="main" className={clsx(classes.footer,)}>
+        < D2/>
       </Container>
 
       {/* Footer */}

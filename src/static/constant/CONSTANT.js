@@ -1,5 +1,7 @@
 export const CHART_TYPES = ['Line', 'Bar', 'Table'] // 0: Line; 1: Bar; 2: Table
 
+export const REFRESH_RATE= 5000
+
 export const TEST_DATA = [
     {
       Timestamp: '12:00', Enter: 4000, Leave: 2400, amt: 2400,
