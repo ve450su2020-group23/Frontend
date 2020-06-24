@@ -7,9 +7,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
-import MyLine from './SimpleLineCharts'
-import MyBar from './PositiveAndNegativeBarChart'
-import MyTable from './Table'
+import MyLine from 'components/SimpleLineCharts'
+import MyBar from 'components/PositiveAndNegativeBarChart'
+import MyTable from 'components/Table'
 import { ButtonGroup, Button } from '@material-ui/core';
 
 // import {CHARTYPES} from 'static/constant/CONSTANT'

@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-import Live from './Live'
-import MEC from './MultiEntrancesCharts'
+import Live from 'components/Live'
+import MEC from 'components/MultiEntrancesCharts'
 
 export default class D1 extends React.Component {
     render() {

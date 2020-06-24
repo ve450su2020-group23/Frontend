@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-import Live from './Live'
-import Charts from './Charts'
+import Live from 'components/Live'
+import Charts from 'components/Charts'
 
 export default class D1 extends React.Component {
     render() {
