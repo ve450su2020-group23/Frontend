@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label
 } from 'recharts';
 
 
@@ -24,8 +24,13 @@ export default class MyLine extends React.Component {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Timestamp" />
-        <YAxis />
+        <XAxis dataKey="Timestamp" >
+        <Label value="Timestamp" offset={0} position="insideBottom" />
+        </XAxis>
+
+        <YAxis >
+        <Label value="Number of People" angle={-90} offset={0} position="insideLeft" />
+        </YAxis>
         <Tooltip />
         <Legend />
         <Line type="monotone" isAnimationActive={false} dataKey="Enter" stroke="#82ca9d"  />

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,ResponsiveContainer
+  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,ResponsiveContainer, Label
 } from 'recharts';
 
 
@@ -33,8 +33,13 @@ export default class MyBar extends React.Component {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Timestamp" />
-        <YAxis />
+        <XAxis dataKey="Timestamp" >
+        <Label value="Timestamp" offset={0} position="insideBottom" />
+        </XAxis>
+
+        <YAxis >
+        <Label value="Number of People" angle={-90} offset={0} position="insideLeft" />
+        </YAxis>
         <Tooltip />
         <Legend />
         <ReferenceLine y={0} stroke="#000" />
