@@ -1,8 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -19,8 +17,6 @@ import "static/css/MultiEntrancesCharts.css";
 import { REFRESH_RATE } from "static/constant/CONSTANT.js";
 
 const data = TEST_DATA;
-
-const show_data_point_num = 7;
 
 export default class MEC extends React.Component {
   constructor(props) {
