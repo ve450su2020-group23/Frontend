@@ -1,14 +1,13 @@
-
 .charts-container {
-    width: 100%;
-    height: 400px;
-    text-align: center;
+  width: 100%;
+  height: 400px;
+  text-align: center;
 }
 
 .button-group {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .entrance-selection {
-    width: 30%;
+  width: 30%;
 }

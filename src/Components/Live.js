@@ -1,15 +1,11 @@
-import React from 'react'
-
-
-
+import React from "react";
 
 export default class Live extends React.Component {
-  render () {
+  render() {
     return (
-        <div>
-            <img src="https://i.ytimg.com/vi/HmJJDus2G2s/maxresdefault.jpg">
-            </img>
+      <div>
+        <img src="https://i.ytimg.com/vi/HmJJDus2G2s/maxresdefault.jpg"></img>
       </div>
-    )
+    );
   }
 }
