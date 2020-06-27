@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
@@ -66,3 +68,7 @@ export default function Footer(classes) {
     </Container>
   );
 }
+
+Footer.propTypes = {
+  classes: PropTypes.object,
+};

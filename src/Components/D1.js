@@ -1,5 +1,6 @@
 import React from "react";
 
+//import PropTypes from 'prop-types';
 import Live from "components/Live";
 import Charts from "components/Charts";
 
@@ -28,3 +29,5 @@ export default function D1() {
     </div>
   );
 }
+
+D1.propTypes = {};

@@ -1,4 +1,5 @@
 import React from "react";
+//import PropTypes from 'prop-types';
 
 export default function Live() {
   return (
@@ -10,3 +11,5 @@ export default function Live() {
     </div>
   );
 }
+
+Live.propTypes = {};

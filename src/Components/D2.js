@@ -1,9 +1,10 @@
 import React from "react";
 
+//import PropTypes from 'prop-types';
 import Live from "components/Live";
 import MEC from "components/MultiEntrancesCharts";
 
-export default function D1() {
+export default function D2() {
   return (
     <div className="myContainer">
       <h2>
@@ -22,6 +23,7 @@ export default function D1() {
         <div className="column">
           <div className="content-box">
             <h3>Live</h3>
+
             <Live />
           </div>
         </div>
@@ -29,3 +31,5 @@ export default function D1() {
     </div>
   );
 }
+
+D2.propTypes = {};

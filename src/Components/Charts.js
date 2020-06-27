@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import PropTypes from 'prop-types';
 import MyLine from "./SimpleLineCharts";
 import MyBar from "./PositiveAndNegativeBarChart";
 import MyTable from "./Table";
@@ -62,3 +63,5 @@ export default function Charts() {
     </div>
   );
 }
+
+Charts.propTypes = {};

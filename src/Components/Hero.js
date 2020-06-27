@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
@@ -33,3 +34,7 @@ export default function Hero(props) {
     </Container>
   );
 }
+
+Hero.propTypes = {
+  props: PropTypes.object,
+};

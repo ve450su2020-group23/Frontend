@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -104,3 +105,7 @@ export default function MyTable(props) {
     </Paper>
   );
 }
+
+MyTable.propTypes = {
+  props: PropTypes.object,
+};
