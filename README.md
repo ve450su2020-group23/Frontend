@@ -1,15 +1,28 @@
 
 # VE450 Frontend 
 
-## To Run commands 
+## To Run commands (Node installed)
 
-### `git clone`
-
-### `npm install .`
-
-### `npm start`
+    $ git clone [SSH/HTTPS] && npm install . && npm start
 
 
+---
+
+## Dev Docker Image Build
+
+link: https://hub.docker.com/repository/docker/umlarryli/ve450-frontend
+
+run:
+
+    $ docker run \
+        -it \
+        --rm \
+        -v ${PWD}:/app \
+        -v /app/node_modules \
+        -p 3001:3000 \
+        -e CHOKIDAR_USEPOLLING=true \
+        sample:dev
+    
 ---
 
 ## New Dependencies (Apart from auto-generated create-react-app dependencies)
