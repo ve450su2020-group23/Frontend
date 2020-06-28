@@ -17,11 +17,10 @@ run:
     $ docker run \
         -it \
         --rm \
-        -v ${PWD}:/app \
-        -v /app/node_modules \
-        -p 3001:3000 \
+        -v /Frontend/node_modules \
+        -p 3000:3000 \
         -e CHOKIDAR_USEPOLLING=true \
-        sample:dev
+        umlarryli/ve450-frontend
     
 ---
 
