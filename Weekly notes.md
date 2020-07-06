@@ -16,10 +16,10 @@
 1. Interface improvement
     1. Logo, 色调 | Done
     2. 背景 | Done
-    3. sidebar
+    3. sidebar | Done 
     4. Fix nav-bar | Done  
     5. PDF Embed
-    6. Github link
+    6. Github link | Done 
 
 2. Content adjustment
    1. Notes | Done
