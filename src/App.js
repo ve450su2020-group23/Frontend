@@ -11,6 +11,7 @@ import Footer from "components/Footer.js";
 import Hero from "components/Hero.js";
 import MyAppBar from "components/AppBar.js";
 import Notes from "components/Notes.js";
+import Video from "components/Video.js";
 
 import "static/css/App.css";
 
@@ -47,6 +48,14 @@ export default function App() {
         className={clsx(classes.footer)}
       >
         <Notes />
+      </Container>
+
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
+      >
+        <Video />
       </Container>
 
       <div className="footer-container">

@@ -11,7 +11,7 @@ export default function MyAppBar(classes) {
   var links = [
     { name: "Deliverables", href: "#" },
     { name: "Notes", href: "#" },
-    { name: "Demo", href: "#" },
+    { name: "Video", href: "#" },
     { name: "How this works", href: "#" },
     { name: "Contact", href: "#" },
   ];

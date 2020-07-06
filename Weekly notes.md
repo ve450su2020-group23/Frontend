@@ -18,3 +18,7 @@
     2. 背景
     3. sidebar
     4. Fix nav-bar
+
+2. Content adjustment
+   1. Notes
+   2. Video

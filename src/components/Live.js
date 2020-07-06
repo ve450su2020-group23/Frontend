@@ -4,10 +4,14 @@ import React from "react";
 export default function Live() {
   return (
     <div>
-      <img
-        alt="live"
-        src="https://i.ytimg.com/vi/HmJJDus2G2s/maxresdefault.jpg"
-      ></img>
+      <iframe
+        width="600"
+        height="350"
+        src="https://www.youtube.com/embed/ZkAkdH1aLRU"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     </div>
   );
 }
