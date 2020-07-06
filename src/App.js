@@ -10,6 +10,7 @@ import D2 from "components/D2.js";
 import Footer from "components/Footer.js";
 import Hero from "components/Hero.js";
 import MyAppBar from "components/AppBar.js";
+import Notes from "components/Notes.js";
 
 import "static/css/App.css";
 
@@ -38,6 +39,14 @@ export default function App() {
         className={clsx(classes.footer)}
       >
         <D2 />
+      </Container>
+
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
+      >
+        <Notes />
       </Container>
 
       <div className="footer-container">

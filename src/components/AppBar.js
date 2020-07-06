@@ -28,7 +28,7 @@ export default function MyAppBar(classes) {
           On-Device Flow Statistics Detection and Prediction
         </Typography>
 
-        <nav className="alignright">
+        <nav className="my-nav">
           {links.map((link) => (
             <Link
               variant="button"

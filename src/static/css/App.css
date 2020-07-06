@@ -76,7 +76,7 @@ img {
 }
 
 .hero {
-  margin-top: 150px;
+  padding-top: 150px;
   margin-bottom: 50px;
 }
 
@@ -91,4 +91,14 @@ img {
 
 .footer {
   color: white;
+}
+
+.my-nav {
+  margin-left: auto;
+}
+
+.slide {
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 100px;
 }

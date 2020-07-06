@@ -4,6 +4,15 @@ export const REFRESH_RATE = 5000;
 
 export const SHOW_DATA_POINT_NUM = 7;
 
+export const DR1 =
+  "https://docs.google.com/presentation/d/e/2PACX-1vSsSctrV_nV21e6S-lg7o9zSWax-dgGICNdTbQRQWTnB6tNQf3Xn2gr_2Zu25mFuVi-7OHbG4BDdPFe/embed?start=false&loop=false&delayms=3000";
+
+export const DR2 =
+  "https://docs.google.com/presentation/d/e/2PACX-1vSVtkqwrpFfUykp_m0LRradfuZvyr-oRoB2gzNT3HqJPQBlbOqnxiUqFJiNoElbonmZ6BIUygWkQvB6/embed?start=false&loop=false&delayms=3000";
+
+export const pre_ex =
+  "https://docs.google.com/presentation/d/e/2PACX-1vR_5lwpvBgXycSZcOPjpSvhAFuvv1ehjnOAD7KT_S9whbMrwfiHA7XaWImLLjeEnTlsujWKpb3MenPH/embed?start=false&loop=false&delayms=3000";
+
 export const TEST_DATA = [
   {
     Timestamp: "12:00",
