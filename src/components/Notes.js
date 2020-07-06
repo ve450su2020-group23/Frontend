@@ -30,7 +30,7 @@ export default function Notes() {
           </ButtonGroup>
         </div>
 
-        <h2>{slides_name_array[slideIndex]} </h2>
+        <h2>Note: {slides_name_array[slideIndex]} </h2>
 
         <iframe
           src={slides_src_array[slideIndex]}

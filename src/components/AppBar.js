@@ -1,29 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
+import GithubCorner from "react-github-corner";
+import SideNav, { MenuIcon } from "react-simple-sidenav";
 
+const menu_item_style = {
+  textDecoration: "none",
+  color: "black",
+};
 export default function MyAppBar(classes) {
+  const [showNav, setShowNav] = useState(false);
   var toolBar = "toolBar";
-  var links = [
-    { name: "Deliverables", href: "#" },
-    { name: "Notes", href: "#" },
-    { name: "Video", href: "#" },
+  const links = [
+    { name: "Deliverables", href: "#D1" },
+    { name: "Notes", href: "#Notes" },
+    { name: "Video", href: "#Video" },
     { name: "How this works", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "#Contact" },
+  ];
+
+  const navItems = [
+    <a href="#D1" style={menu_item_style}>
+      Deliverables
+    </a>,
+    <a href="#Notes" style={menu_item_style}>
+      Notes
+    </a>,
+    <a href="#Video" style={menu_item_style}>
+      Video
+    </a>,
+    <a href="#" style={menu_item_style}>
+      HOW THIS WORKS
+    </a>,
+    <a href="#Contact" style={menu_item_style}>
+      CONTACT
+    </a>,
   ];
   return (
     <AppBar elevation={0} className={classes.appBar}>
+      <SideNav
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+        items={navItems}
+        title={"Menu"}
+        navStyle={{ width: "auto" }}
+      />
+
       <Toolbar className={(classes.toolbar, toolBar)}>
+        <MenuIcon onClick={() => setShowNav(true)} />
         <Typography
           variant="h6"
           color="inherit"
           noWrap
           className={classes.toolbarTitle}
         >
+          <GithubCorner href="https://github.com/ve450su2020-group23" />
           <span className="yellow-text">UM-SJTU</span> VE450 Group23 Real-Time
           On-Device Flow Statistics Detection and Prediction
         </Typography>

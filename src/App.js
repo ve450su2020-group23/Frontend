@@ -30,6 +30,7 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
+        id="D1"
       >
         <D1 />
       </Container>
@@ -46,6 +47,7 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
+        id="Notes"
       >
         <Notes />
       </Container>
@@ -54,11 +56,12 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
+        id="Video"
       >
         <Video />
       </Container>
 
-      <div className="footer-container">
+      <div className="footer-container" id="Contact">
         <Footer classes={classes} />
       </div>
     </React.Fragment>

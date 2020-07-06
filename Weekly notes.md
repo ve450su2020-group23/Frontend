@@ -14,11 +14,13 @@
 ## 6.6
 
 1. Interface improvement
-    1. Logo, 色调
-    2. 背景
+    1. Logo, 色调 | Done
+    2. 背景 | Done
     3. sidebar
-    4. Fix nav-bar
+    4. Fix nav-bar | Done  
+    5. PDF Embed
+    6. Github link
 
 2. Content adjustment
-   1. Notes
-   2. Video
+   1. Notes | Done
+   2. Video | Done

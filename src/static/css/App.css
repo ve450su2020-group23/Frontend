@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  text-decoration: none;
 }
 
 .App-logo {
@@ -64,6 +65,7 @@ img {
 
 .yellow-text {
   color: rgb(254, 198, 3);
+  margin-left: 20px;
 }
 
 .toolBar {
@@ -73,6 +75,7 @@ img {
 
 .umsjtu-logo {
   height: 80px;
+  margin-right: 40px;
 }
 
 .hero {

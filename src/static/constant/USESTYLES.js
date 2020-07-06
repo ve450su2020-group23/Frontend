@@ -25,11 +25,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
-    paddingTop: theme.spacing(3),
+    paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(3),
     [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
+      paddingTop: theme.spacing(15),
+      paddingBottom: theme.spacing(2),
     },
   },
 }));
