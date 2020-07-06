@@ -4,11 +4,12 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 export default function Hero(props) {
+  var hero = "hero";
   return (
     <Container
       maxWidth="lg"
       component="main"
-      className={props.classes.heroContent}
+      className={(props.classes.heroContent, hero)}
     >
       <Typography
         component="h1"

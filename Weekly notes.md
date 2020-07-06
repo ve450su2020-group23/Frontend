@@ -10,3 +10,11 @@
 
 1. 尝试连调后端api
 2. 修改网站interface
+
+## 6.6
+
+1. Interface improvement
+    1. Logo, 色调
+    2. 背景
+    3. sidebar
+    4. Fix nav-bar

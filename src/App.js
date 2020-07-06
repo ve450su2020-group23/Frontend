@@ -40,7 +40,9 @@ export default function App() {
         <D2 />
       </Container>
 
-      <Footer classes={classes} />
+      <div className="footer-container">
+        <Footer classes={classes} />
+      </div>
     </React.Fragment>
   );
 }

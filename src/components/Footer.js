@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="inherit" align="center">
       {"Copyright © "}
       <Link color="inherit" href="">
         UM-SJTU VE450 Group 23
@@ -42,18 +42,23 @@ const footers = [
 ];
 
 export default function Footer(classes) {
+  var footer = "footer";
   return (
-    <Container maxWidth="md" component="footer" className={classes.footer}>
+    <Container
+      maxWidth="md"
+      component="footer"
+      className={(classes.footer, footer)}
+    >
       <Grid container spacing={4} justify="space-evenly">
         {footers.map((footer) => (
           <Grid item xs={6} sm={3} key={footer.title}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
+            <Typography variant="h6" color="inherit" gutterBottom>
               {footer.title}
             </Typography>
             <ul>
               {footer.description.map((item) => (
                 <li key={item}>
-                  <Link href="#" variant="subtitle1" color="textSecondary">
+                  <Link href="#" variant="subtitle1" color="inherit">
                     {item}
                   </Link>
                 </li>
@@ -61,7 +66,16 @@ export default function Footer(classes) {
             </ul>
           </Grid>
         ))}
+
+        <a href="http://umji.sjtu.edu.cn/">
+          <img
+            alt="umsjtu-logo"
+            className="footer-logo"
+            src="http://111.186.58.65/wp-content/uploads/2020/04/footer-logo.png"
+          ></img>
+        </a>
       </Grid>
+
       <Box mt={5}>
         <Copyright />
       </Box>
