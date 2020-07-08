@@ -59,8 +59,8 @@ export default function MyAppBar(classes) {
           className={classes.toolbarTitle}
         >
           <GithubCorner href="https://github.com/ve450su2020-group23" />
-          <span className="yellow-text">UM-SJTU</span> VE450 Group23 Real-Time
-          On-Device Flow Statistics Detection and Prediction
+          <span className="yellow-text">VE450 Group23</span> Real-Time On-Device
+          Flow Statistics Detection and Prediction
         </Typography>
 
         <nav className="my-nav">

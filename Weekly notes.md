@@ -24,3 +24,8 @@
 2. Content adjustment
    1. Notes | Done
    2. Video | Done
+
+3. Deploy on AWS Amplify
+    CI / CD
+
+    continuous integration / continuous deployment
