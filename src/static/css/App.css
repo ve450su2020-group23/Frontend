@@ -44,6 +44,7 @@
 
 .content {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
@@ -51,9 +52,15 @@
   margin: 20px auto;
 }
 
+@media only screen and (max-width: 1150px) {
+  .column {
+    width: 100%;
+    margin: 20px auto;
+  }
+}
+
 .content-box {
   width: 100%;
-  height: 600px;
   overflow: hidden;
   text-align: center;
 }
@@ -61,6 +68,12 @@
 img {
   max-width: 100%;
   height: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .title-text {
+    font-size: 3vw;
+  }
 }
 
 .yellow-text {
@@ -101,7 +114,44 @@ img {
 }
 
 .slide {
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+h1 {
+  color: rgb(9, 38, 78);
+}
+
+.notes-title {
+  text-align: center;
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.frame-container {
+  position: relative;
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 56.25%;
+}
+
+.responsive-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 650px;
+  margin: 0 auto;
+  height: 100%;
 }

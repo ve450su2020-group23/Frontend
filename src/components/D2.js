@@ -7,10 +7,10 @@ import MEC from "components/MultiEntrancesCharts";
 export default function D2() {
   return (
     <div className="myContainer">
-      <h2>
+      <h1>
         Deliverable 2: People counting system with automatic entrances detection
         and separated counting
-      </h2>
+      </h1>
 
       <div className="content">
         <div className="column">
@@ -22,12 +22,13 @@ export default function D2() {
 
         <div className="column">
           <div className="content-box">
-            <h3>Live</h3>
+            <h3>Live demo</h3>
 
             <Live />
           </div>
         </div>
       </div>
+      <div>Note:</div>
     </div>
   );
 }

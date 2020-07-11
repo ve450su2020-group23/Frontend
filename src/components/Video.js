@@ -4,17 +4,19 @@ import React from "react";
 export default function Video() {
   return (
     <div className="myContainer">
-      <h2>Demo Video</h2>
+      <h1>Demo Video</h1>
       <div className="slide">
-        <iframe
-          width="960"
-          height="569"
-          src="https://www.youtube.com/embed/ZkAkdH1aLRU"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <div className="frame-container">
+          <iframe
+            className="responsive-frame"
+            src="https://www.youtube.com/embed/ZkAkdH1aLRU"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
+      <div>Note:</div>
     </div>
   );
 }

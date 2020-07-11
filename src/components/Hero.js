@@ -18,8 +18,7 @@ export default function Hero(props) {
         color="textPrimary"
         gutterBottom
       >
-        Automatic human traffic statistics collection and prediction with
-        entrances detection.
+        Real-Time On-Device Flow Statistics Detection and Prediction
       </Typography>
       <Typography
         variant="h5"

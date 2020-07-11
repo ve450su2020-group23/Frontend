@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -12,7 +12,37 @@ const menu_item_style = {
   textDecoration: "none",
   color: "black",
 };
+
+function useWindowSize() {
+  const isClient = typeof window === "object";
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined,
+    };
+  }
+
+  const [windowSize, setWindowSize] = useState(getSize);
+
+  useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}
+
 export default function MyAppBar(classes) {
+  const size = useWindowSize();
   const [showNav, setShowNav] = useState(false);
   var toolBar = "toolBar";
   const links = [
@@ -31,7 +61,7 @@ export default function MyAppBar(classes) {
       Notes
     </a>,
     <a href="#Video" style={menu_item_style}>
-      Video
+      Vide
     </a>,
     <a href="#" style={menu_item_style}>
       HOW THIS WORKS
@@ -40,6 +70,23 @@ export default function MyAppBar(classes) {
       CONTACT
     </a>,
   ];
+  var nav_links;
+  if (size.width < 1150) {
+    nav_links = null;
+  } else {
+    nav_links = links.map((link) => (
+      <Link
+        variant="button"
+        color="inherit"
+        href={link.href}
+        className={classes.link}
+        style={{ margin: "0 20px" }}
+      >
+        {link.name}
+      </Link>
+    ));
+  }
+
   return (
     <AppBar elevation={0} className={classes.appBar}>
       <SideNav
@@ -59,23 +106,12 @@ export default function MyAppBar(classes) {
           className={classes.toolbarTitle}
         >
           <GithubCorner href="https://github.com/ve450su2020-group23" />
-          <span className="yellow-text">VE450 Group23</span> Real-Time On-Device
-          Flow Statistics Detection and Prediction
+          <span className="title-text">
+            <span className="yellow-text">VE450 Group23 </span> Demo Page
+          </span>
         </Typography>
 
-        <nav className="my-nav">
-          {links.map((link) => (
-            <Link
-              variant="button"
-              color="inherit"
-              href={link.href}
-              className={classes.link}
-              style={{ margin: "0 20px" }}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        <nav className="my-nav">{nav_links}</nav>
         <a href="http://umji.sjtu.edu.cn/">
           <img
             alt="umsjtu-logo"
