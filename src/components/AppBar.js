@@ -61,13 +61,13 @@ export default function MyAppBar(classes) {
       Notes
     </a>,
     <a href="#Video" style={menu_item_style}>
-      Vide
+      Video
     </a>,
     <a href="#" style={menu_item_style}>
-      HOW THIS WORKS
+      How this works
     </a>,
     <a href="#Contact" style={menu_item_style}>
-      CONTACT
+      Contact
     </a>,
   ];
   var nav_links;
@@ -95,6 +95,7 @@ export default function MyAppBar(classes) {
         items={navItems}
         title={"Menu"}
         navStyle={{ width: "auto" }}
+        titleStyle={{ backgroundColor: "rgb(1, 45, 94)" }}
       />
 
       <Toolbar className={(classes.toolbar, toolBar)}>
