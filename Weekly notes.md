@@ -29,3 +29,10 @@
     CI / CD
 
     continuous integration / continuous deployment
+
+
+## 7.14
+
+1. 移动端适配
+2. 添加自选时间段
+3. 更换国内资源

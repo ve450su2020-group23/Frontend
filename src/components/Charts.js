@@ -65,6 +65,31 @@ export default function Charts() {
   return (
     <div>
       <div>
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
+            setEndDate(null);
+            setEndTime(null);
+          }}
+        >
+          Start - Now
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
+            setEndDate(null);
+            setEndTime(null);
+            setStartDate(new Date());
+            setStartTime(new Date());
+          }}
+        >
+          Start From Now
+        </Button>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
