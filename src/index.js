@@ -12,14 +12,14 @@ import varelaTtf from "./static/fonts/Varela-Regular.ttf";
 import IBMPlexTtf from "./static/fonts/IBMPlexSerif-Regular.ttf";
 import vollkornTtf from "./static/fonts/Vollkorn-Regular.ttf";
 import alegreyaTtf from "./static/fonts/AlegreyaSans-Regular.ttf";
-import sourceSansProTtf from "./static/fonts/SourceSansPro-Regular.ttf";
+import sourceTtf from "./static/fonts/SourceSansPro-Regular.ttf";
 
-const sourceSansPro = {
-  fontFamily: "sourceSansPro",
+const source = {
+  fontFamily: "source",
   src: `
-  local('sourceSansPro'),
-  local('sourceSansPro'),
-  url(${sourceSansProTtf}) format('sourceSansPro')
+  local('source'),
+  local('source'),
+  url(${sourceTtf}) format('source')
 `,
 };
 
@@ -61,18 +61,13 @@ const IBMPlex = {
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: [
-      "IBMPlex",
-      "alegreya",
-      "vollkorn",
-      "varela",
-      "Arial",
-      "sourceSansPro",
-    ].join(","),
+    fontFamily: ["Arial", "vollkorn", "varela", "alegreya", "IBMPlex"].join(
+      ","
+    ),
     overrides: {
       MuiCssBaseline: {
         "@global": {
-          "@font-face": [varela, IBMPlex, vollkorn, alegraya, sourceSansPro],
+          "@font-face": [varela, IBMPlex, vollkorn, alegraya, source],
         },
       },
     },

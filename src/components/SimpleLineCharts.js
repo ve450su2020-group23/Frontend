@@ -10,7 +10,15 @@ import {
   Legend,
   ResponsiveContainer,
   Label,
+  Text,
+  tspan,
 } from "recharts";
+
+class CustomizedAxisTick extends React.Component {
+  render() {
+    return <div>1</div>;
+  }
+}
 
 export default function MyLine(props) {
   return (
@@ -25,8 +33,17 @@ export default function MyLine(props) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Timestamp">
-          <Label value="Timestamp" offset={0} position="insideBottom" />
+
+        <XAxis dataKey="Timestamp" height={20} xAxisId={0} interval={0}></XAxis>
+
+        <XAxis
+          dataKey="Date"
+          height={50}
+          xAxisId={1}
+          axisLine={false}
+          tickLine={false}
+        >
+          <Label value="Timestamp" offset={0}></Label>
         </XAxis>
 
         <YAxis>

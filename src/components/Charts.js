@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import MyLine from "./SimpleLineCharts";
 import MyBar from "./PositiveAndNegativeBarChart";
 import MyTable from "./Table";
+import axios from "axios";
 import { ButtonGroup, Button } from "@material-ui/core";
 import {
   CHART_TYPES,
@@ -48,6 +49,8 @@ export default function Charts() {
   const [endDate, setEndDate] = React.useState(new Date());
   const [endTime, setEndTime] = React.useState(new Date());
 
+  const [showData, setShowData] = React.useState([]);
+
   const [chartIndex, setChartIndex] = useState(0);
   const [dataStartIndex, setDataStartIndex] = useState(0);
   useEffect(() => {
@@ -60,7 +63,31 @@ export default function Charts() {
     };
   });
 
+  /*
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `http://hn.algolia.com/api/v1/search?query=${query}`,
+      );
+ 
+      setShowData(result.data);
+    };
+ 
+    fetchData();
+  }, []);
+  */
+
+  useEffect(() => {
+    const str = JSON.stringify(startDate);
+    const date = Date(str);
+
+    console.log(str);
+    console.log(date);
+    console.log(startDate + " |||| " + startTime);
+  }, [startDate, startTime]);
+
   const chart = switchChart(chartIndex, dataStartIndex, TEST_DATA);
+  //const chart = switchChart(chartIndex, showData);
 
   return (
     <div>
@@ -74,7 +101,7 @@ export default function Charts() {
             setEndTime(null);
           }}
         >
-          Start - Now
+          Start To Now
         </Button>
 
         <Button

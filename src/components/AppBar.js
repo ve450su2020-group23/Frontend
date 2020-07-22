@@ -106,7 +106,7 @@ export default function MyAppBar(classes) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <GithubCorner href="https://github.com/ve450su2020-group23" />
+          <GithubCorner href="#" />
           <span className="title-text">
             <span className="yellow-text">VE450 Group23 </span> Demo Page
           </span>
