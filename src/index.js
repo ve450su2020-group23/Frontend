@@ -12,14 +12,14 @@ import varelaTtf from "./static/fonts/Varela-Regular.ttf";
 import IBMPlexTtf from "./static/fonts/IBMPlexSerif-Regular.ttf";
 import vollkornTtf from "./static/fonts/Vollkorn-Regular.ttf";
 import alegreyaTtf from "./static/fonts/AlegreyaSans-Regular.ttf";
-import akzidenzTtf from "./static/fonts/Akzidenz-grotesk-black.ttf";
+import sourceSansProTtf from "./static/fonts/SourceSansPro-Regular.ttf";
 
-const akzidenz = {
-  fontFamily: "akzidenz",
+const sourceSansPro = {
+  fontFamily: "sourceSansPro",
   src: `
-  local('akzidenz'),
-  local('akzidenz'),
-  url(${akzidenzTtf}) format('akzidenz')
+  local('sourceSansPro'),
+  local('sourceSansPro'),
+  url(${sourceSansProTtf}) format('sourceSansPro')
 `,
 };
 
@@ -62,9 +62,10 @@ const IBMPlex = {
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      "Arial",
+      "sourceSansPro",
       "IBMPlex",
       "alegreya",
+      "Arial",
       "varela",
       "vollkorn",
       "akzidenz",
@@ -72,7 +73,7 @@ const theme = createMuiTheme({
     overrides: {
       MuiCssBaseline: {
         "@global": {
-          "@font-face": [akzidenz, varela, IBMPlex, vollkorn, alegraya],
+          "@font-face": [sourceSansPro, varela, IBMPlex, vollkorn, alegraya],
         },
       },
     },

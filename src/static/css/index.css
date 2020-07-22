@@ -1,4 +1,9 @@
 @font-face {
+  font-family: sourceSansPro;
+  src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
   font-family: alegreya;
   src: url("../fonts/AlegreyaSans-Regular.ttf");
 }
