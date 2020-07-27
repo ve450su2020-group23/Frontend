@@ -21,7 +21,6 @@ class CustomizedAxisTick extends React.Component {
 }
 
 export default function MyLine(props) {
-  console.log(window.screen.width);
   let xAxis = (
     <XAxis
       dataKey="Timestamp"

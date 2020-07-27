@@ -5,6 +5,7 @@ import Live from "components/Live";
 import Charts from "components/Charts";
 
 export default function D1() {
+  let charts = Charts(0);
   return (
     <div className="myContainer">
       <h1>
@@ -15,7 +16,7 @@ export default function D1() {
         <div className="column">
           <div className="content-box">
             <h3>Human traffic statistics</h3>
-            <Charts />
+            {charts}
           </div>
         </div>
 

@@ -12,10 +12,10 @@ import MockAdapter from "axios-mock-adapter";
 import { ButtonGroup, Button } from "@material-ui/core";
 import {
   CHART_TYPES,
-  TEST_DATA,
   TEST_API_DATA,
   REFRESH_RATE,
   SHOW_DATA_POINT_NUM,
+  time_zone_offset,
 } from "static/constant/CONSTANT";
 import {
   MuiPickersUtilsProvider,
@@ -24,42 +24,74 @@ import {
 } from "@material-ui/pickers";
 import "static/css/charts.css";
 
-function switchChart(chartIndex, dataStartIndex, data) {
-  var showData = [];
+Date.prototype.isValid = function () {
+  return this.getTime() === this.getTime();
+};
+
+function switchChart(chartIndex, data, full_data, chartKey) {
+  var showData = data;
+  /*
   for (var i = dataStartIndex; showData.length < SHOW_DATA_POINT_NUM; i++) {
     i = i % data.length;
     showData.push(data[i]);
   }
+  */
 
   var chart;
-  var reverse_data = JSON.parse(JSON.stringify(data)).reverse();
+  var reverse_data = JSON.parse(JSON.stringify(full_data)).reverse();
+  //var reverse_data = full_data;
   switch (chartIndex) {
     case 0:
-      chart = <MyLine data={showData} key={dataStartIndex} />;
+      chart = <MyLine data={showData} key={chartKey} />;
       break;
     case 1:
-      chart = <MyBar data={showData} key={dataStartIndex} />;
+      chart = <MyBar data={showData} key={chartKey} />;
       break;
     default:
-      chart = <MyTable data={reverse_data} />;
+      chart = <MyTable data={reverse_data} key={chartKey} />;
   }
   return <div className="charts-container">{chart}</div>;
 }
 
-export default function Charts() {
-  const [startDate, setStartDate] = React.useState(new Date());
-  const [startTime, setStartTime] = React.useState(new Date());
-  const [endDate, setEndDate] = React.useState(new Date());
-  const [endTime, setEndTime] = React.useState(new Date());
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function getNowDate() {
+  return new Date(Date.now() + time_zone_offset);
+}
+
+function assignTime(new_date, date, time) {
+  new_date.setFullYear(date.getFullYear());
+  new_date.setMonth(date.getMonth());
+  new_date.setDate(date.getDate());
+  new_date.setHours(time.getHours());
+  new_date.setMinutes(time.getMinutes());
+  new_date.setSeconds(time.getSeconds());
+}
+
+export default function Charts(entrance_index = 0) {
+  const [startDate, setStartDate] = React.useState(new Date(1595878949075));
+  const [startTime, setStartTime] = React.useState(new Date(1595878949075));
+  const [endDate, setEndDate] = React.useState(
+    new Date(1595878949075 + 36000000)
+  );
+  const [endTime, setEndTime] = React.useState(
+    new Date(1595878949075 + 36000000)
+  );
 
   const [showData, setShowData] = React.useState([]);
-
+  const [fullData, setFullData] = React.useState([]);
   const [chartIndex, setChartIndex] = useState(0);
-  const [dataStartIndex, setDataStartIndex] = useState(0);
+  const [chartKey, setChartKey] = useState(0);
+
+  const [updateWithTime, setUpdateWithTime] = React.useState(false);
+
   useEffect(() => {
-    var timeID = setInterval(() => {
-      setDataStartIndex(dataStartIndex + 1);
-    }, REFRESH_RATE);
+    var timeID = setInterval(() => {}, REFRESH_RATE);
 
     return () => {
       clearInterval(timeID);
@@ -70,32 +102,112 @@ export default function Charts() {
     const mock = new MockAdapter(axios);
     mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
 
-    const fetchData = async () => {
+    const fetchData = async (
+      start_timestamp,
+      end_timestamp,
+      slice_newest_data
+    ) => {
+      const url =
+        "/data_" + start_timestamp.toString + "_" + end_timestamp.toString();
       const result = await axios(`/data_start_end`);
 
       //setShowData(result.data);
       if (result && result.data) {
-        console.log(result.data);
-
         const data = result.data;
         const start_time = Date.now();
         const in_array = data.in;
         const out_array = data.out;
 
         let new_data = [];
+        let full_data = [];
+        console.log(entrance_index);
+
+        for (let i = 0; i < in_array.length; i++) {
+          let new_time = new Date(start_time + i * 600000);
+          let date =
+            new_time.getMonth().toString() +
+            "." +
+            new_time.getDate().toString();
+          let time_stamp =
+            new_time.getHours().toString() +
+            ":" +
+            addZero(new_time.getMinutes()).toString();
+          full_data.push({
+            Date: date,
+            Timestamp: time_stamp,
+            Enter: in_array[i][entrance_index],
+            Leave: out_array[i][entrance_index],
+          });
+        }
+
+        if (slice_newest_data) {
+          var reverse_data = JSON.parse(JSON.stringify(full_data)).reverse();
+          new_data = reverse_data.slice(
+            0,
+            Math.min(SHOW_DATA_POINT_NUM, in_array.length)
+          );
+          new_data = JSON.parse(JSON.stringify(new_data)).reverse();
+        } else {
+          if (full_data.length < SHOW_DATA_POINT_NUM) {
+            new_data = full_data.slice(0, in_array.length);
+          } else {
+            const interval = parseInt(full_data.length / SHOW_DATA_POINT_NUM);
+            for (let i = 0; i < SHOW_DATA_POINT_NUM; i++) {
+              new_data.push(full_data[i * interval]);
+            }
+          }
+
+          new_data = full_data.slice(
+            0,
+            Math.min(SHOW_DATA_POINT_NUM, in_array.length)
+          );
+        }
+
+        setShowData(new_data);
+        setFullData(full_data);
+        console.log(chartKey);
       }
     };
 
-    fetchData();
-  }, []);
+    let start_timestamp = getNowDate();
+    let end_timestamp = getNowDate();
+
+    if (startDate && startTime && startDate.isValid && startTime.isValid) {
+      assignTime(start_timestamp, startDate, startTime);
+    }
+    if (endDate && endTime && endDate.isValid && endTime.isValid) {
+      assignTime(end_timestamp, endDate, endTime);
+    }
+
+    if (updateWithTime) {
+      var timeID = setInterval(() => {
+        fetchData(
+          start_timestamp.getTime() - time_zone_offset,
+          end_timestamp.getTime() - time_zone_offset,
+          true
+        );
+        setChartKey(chartKey + 1);
+      }, REFRESH_RATE);
+
+      return () => {
+        clearInterval(timeID);
+      };
+    } else {
+      fetchData(
+        start_timestamp.getTime() - time_zone_offset,
+        end_timestamp.getTime() - time_zone_offset,
+        false
+      );
+    }
+  }, [chartKey, updateWithTime, entrance_index]);
 
   useEffect(() => {
     const str = JSON.stringify(startDate);
     const date = Date(str);
   }, [startDate, startTime]);
 
-  const chart = switchChart(chartIndex, dataStartIndex, TEST_DATA);
-  //const chart = switchChart(chartIndex, showData);
+  //const chart = switchChart(chartIndex, dataStartIndex, TEST_DATA);
+  const chart = switchChart(chartIndex, showData, fullData, chartKey);
 
   return (
     <div>
@@ -105,8 +217,22 @@ export default function Charts() {
           color="secondary"
           className="time-button"
           onClick={() => {
-            setEndDate(null);
-            setEndTime(null);
+            setUpdateWithTime(false);
+            setChartKey(chartKey + 1);
+          }}
+        >
+          Start To End
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
+            setEndDate(getNowDate());
+            setEndTime(getNowDate());
+            setUpdateWithTime(false);
+            setChartKey(chartKey + 1);
           }}
         >
           Start To Now
@@ -119,8 +245,10 @@ export default function Charts() {
           onClick={() => {
             setEndDate(null);
             setEndTime(null);
-            setStartDate(new Date());
-            setStartTime(new Date());
+            setStartDate(getNowDate());
+            setStartTime(getNowDate());
+            setUpdateWithTime(true);
+            setChartKey(chartKey + 1);
           }}
         >
           Start From Now

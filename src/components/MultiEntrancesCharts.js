@@ -11,7 +11,7 @@ import "static/css/MultiEntrancesCharts.css";
 export default function MEC() {
   const [entranceIndex, setEntranceIndex] = useState(0);
 
-  const chart = Charts();
+  const chart = Charts(entranceIndex);
   return (
     <div>
       <div className="form-control-container">

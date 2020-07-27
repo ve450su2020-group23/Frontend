@@ -18,6 +18,8 @@ export const pre_ex =
 
 export const demo_video_url = "https://www.bilibili.com/video/BV1rK411J7pn";
 
+export const time_zone_offset = 12 * 60 * 60 * 1000;
+
 export const TEST_DATA = [
   {
     Date: "02/01",
@@ -120,7 +122,31 @@ export const TEST_DATA = [
 ];
 
 export const TEST_API_DATA = {
-  in: [2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000],
-  out: [4000, 3900, 3800, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3000],
+  in: [
+    [2000],
+    [2100],
+    [2200],
+    [2300],
+    [2400],
+    [2500],
+    [2600],
+    [2700],
+    [2800],
+    [2900],
+    [3000],
+  ],
+  out: [
+    [4000],
+    [3900],
+    [3800],
+    [3700],
+    [3600],
+    [3500],
+    [3400],
+    [3300],
+    [3200],
+    [3100],
+    [3000],
+  ],
   msg: "ok",
 };

@@ -22,6 +22,21 @@ export default function MyBar(props) {
     }
   }
 
+  let xAxis = (
+    <XAxis
+      dataKey="Timestamp"
+      height={20}
+      xAxisId={0}
+      interval={0}
+      tickCount={5}
+    ></XAxis>
+  );
+  if (window.screen.width < 520) {
+    xAxis = (
+      <XAxis dataKey="Timestamp" height={20} xAxisId={0} tickCount={5}></XAxis>
+    );
+  }
+
   return (
     <ResponsiveContainer width="90%" height="80%">
       <BarChart
@@ -35,7 +50,7 @@ export default function MyBar(props) {
       >
         <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis dataKey="Timestamp" height={20} xAxisId={0} interval={0}></XAxis>
+        {xAxis}
 
         <XAxis
           dataKey="Date"
