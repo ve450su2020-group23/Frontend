@@ -52,7 +52,6 @@ export default function MyTable(props) {
   data.forEach((element) => {
     rows.push(createData(element));
   });
-  console.log(rows);
 
   return (
     <Paper className={classes.root}>

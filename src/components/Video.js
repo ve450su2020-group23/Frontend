@@ -12,9 +12,8 @@ export default function Video() {
             src="//player.bilibili.com/player.html?aid=498960339&bvid=BV1rK411J7pn&cid=216125044&page=1"
             scrolling="no"
             border="0"
-            frameborder="no"
-            framespacing="0"
-            allowfullscreen="true"
+            frameBorder="no"
+            allowFullScreen={true}
           >
             {" "}
           </iframe>

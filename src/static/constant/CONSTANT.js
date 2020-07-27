@@ -22,7 +22,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "12:00",
-    TD: "02/01/2020 12:00",
     Enter: 4000,
     Leave: 2400,
     amt: 2400,
@@ -30,7 +29,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "14:00",
-    TD: "02/01/2020 12:00",
     Enter: 3000,
     Leave: 1398,
     amt: 2210,
@@ -38,7 +36,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "15:00",
-    TD: "02/01/2020 12:00",
     Enter: 2000,
     Leave: 9800,
     amt: 2290,
@@ -46,7 +43,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "18:00",
-    TD: "02/01/2020 12:00",
     Enter: 2780,
     Leave: 3908,
     amt: 2000,
@@ -54,7 +50,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "12:40",
-    TD: "02/01/2020 12:00",
     Enter: 1890,
     Leave: 4800,
     amt: 2181,
@@ -62,7 +57,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "12:50",
-    TD: "02/01/2020 12:00",
     Enter: 2390,
     Leave: 3800,
     amt: 2500,
@@ -70,7 +64,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "13:00",
-    TD: "02/01/2020 12:00",
     Enter: 3490,
     Leave: 4300,
     amt: 2100,
@@ -78,7 +71,6 @@ export const TEST_DATA = [
   {
     Date: "02/01",
     Timestamp: "13:00",
-    TD: "02/01/2020 12:00",
     Enter: 3490,
     Leave: 4300,
     amt: 2100,
@@ -112,7 +104,7 @@ export const TEST_DATA = [
     amt: 2181,
   },
   {
-    Date: "02/01/2020",
+    Date: "02/01",
     Timestamp: "13:50",
     Enter: 2390,
     Leave: 3800,
@@ -126,3 +118,9 @@ export const TEST_DATA = [
     amt: 2100,
   },
 ];
+
+export const TEST_API_DATA = {
+  in: [2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000],
+  out: [4000, 3900, 3800, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3000],
+  msg: "ok",
+};

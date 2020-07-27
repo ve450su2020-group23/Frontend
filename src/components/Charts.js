@@ -7,10 +7,13 @@ import MyLine from "./SimpleLineCharts";
 import MyBar from "./PositiveAndNegativeBarChart";
 import MyTable from "./Table";
 import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+
 import { ButtonGroup, Button } from "@material-ui/core";
 import {
   CHART_TYPES,
   TEST_DATA,
+  TEST_API_DATA,
   REFRESH_RATE,
   SHOW_DATA_POINT_NUM,
 } from "static/constant/CONSTANT";
@@ -63,27 +66,32 @@ export default function Charts() {
     };
   });
 
-  /*
   useEffect(() => {
+    const mock = new MockAdapter(axios);
+    mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
+
     const fetchData = async () => {
-      const result = await axios(
-        `http://hn.algolia.com/api/v1/search?query=${query}`,
-      );
- 
-      setShowData(result.data);
+      const result = await axios(`/data_start_end`);
+
+      //setShowData(result.data);
+      if (result && result.data) {
+        console.log(result.data);
+
+        const data = result.data;
+        const start_time = Date.now();
+        const in_array = data.in;
+        const out_array = data.out;
+
+        let new_data = [];
+      }
     };
- 
+
     fetchData();
   }, []);
-  */
 
   useEffect(() => {
     const str = JSON.stringify(startDate);
     const date = Date(str);
-
-    console.log(str);
-    console.log(date);
-    console.log(startDate + " |||| " + startTime);
   }, [startDate, startTime]);
 
   const chart = switchChart(chartIndex, dataStartIndex, TEST_DATA);

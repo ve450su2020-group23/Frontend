@@ -36,12 +36,12 @@ export default function Notes() {
 
         <div className="frame-container">
           <iframe
-            class="responsive-frame"
+            className="responsive-frame"
             src={slides_src_array[slideIndex]}
             name="Design%20Review%201"
             scrolling="no"
             frameBorder="0"
-            allowfullscreen="true"
+            allowFullScreen={true}
             mozallowfullscreen="true"
             webkitallowfullscreen="true"
           ></iframe>

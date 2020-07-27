@@ -21,6 +21,21 @@ class CustomizedAxisTick extends React.Component {
 }
 
 export default function MyLine(props) {
+  console.log(window.screen.width);
+  let xAxis = (
+    <XAxis
+      dataKey="Timestamp"
+      height={20}
+      xAxisId={0}
+      interval={0}
+      tickCount={5}
+    ></XAxis>
+  );
+  if (window.screen.width < 520) {
+    xAxis = (
+      <XAxis dataKey="Timestamp" height={20} xAxisId={0} tickCount={5}></XAxis>
+    );
+  }
   return (
     <ResponsiveContainer width="90%" height="80%">
       <LineChart
@@ -34,7 +49,7 @@ export default function MyLine(props) {
       >
         <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis dataKey="Timestamp" height={20} xAxisId={0} interval={0}></XAxis>
+        {xAxis}
 
         <XAxis
           dataKey="Date"
@@ -42,6 +57,7 @@ export default function MyLine(props) {
           xAxisId={1}
           axisLine={false}
           tickLine={false}
+          tickCount={5}
         >
           <Label value="Timestamp" offset={0}></Label>
         </XAxis>
