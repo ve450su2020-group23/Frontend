@@ -3,10 +3,14 @@ import React, { useState, useEffect } from "react";
 
 import { ButtonGroup, Button } from "@material-ui/core";
 
-import { DR1, DR2, pre_ex } from "static/constant/CONSTANT.js";
+import { DR1, DR2, DR3 } from "static/constant/CONSTANT.js";
 
-const slides_src_array = [DR1, DR2];
-const slides_name_array = ["Design Review 1", "Design Review 2"];
+const slides_src_array = [DR1, DR2, DR3];
+const slides_name_array = [
+  "Design Review 1",
+  "Design Review 2",
+  "Design Review 3",
+];
 
 export default function Notes() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -34,14 +38,15 @@ export default function Notes() {
           <iframe
             class="responsive-frame"
             src={slides_src_array[slideIndex]}
-            frameborder="0"
+            name="Design%20Review%201"
+            scrolling="no"
+            frameBorder="0"
             allowfullscreen="true"
             mozallowfullscreen="true"
             webkitallowfullscreen="true"
           ></iframe>
         </div>
       </div>
-      <div>Note:</div>
     </div>
   );
 }

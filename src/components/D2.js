@@ -28,7 +28,6 @@ export default function D2() {
           </div>
         </div>
       </div>
-      <div>Note:</div>
     </div>
   );
 }

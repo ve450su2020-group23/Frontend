@@ -26,7 +26,6 @@ export default function D1() {
           </div>
         </div>
       </div>
-      <div>Note:</div>
     </div>
   );
 }
