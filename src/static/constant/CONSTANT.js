@@ -22,6 +22,11 @@ export const demo_video_url = "https://www.bilibili.com/video/BV1rK411J7pn";
 
 export const time_zone_offset = 12 * 60 * 60 * 1000;
 
+export const VIDEO_DURATION = 60;
+
+export const VIDEO_URL_PREFIX =
+  "https://ve450videos.s3-ap-southeast-1.amazonaws.com/";
+
 export const TEST_DATA = [
   {
     Date: "02/01",

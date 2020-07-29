@@ -74,7 +74,9 @@ function assignTime(new_date, date, time) {
   new_date.setSeconds(time.getSeconds());
 }
 
-export default function Charts(entrance_index = 0) {
+export default function Charts(props) {
+  const entrance_index = props.entrance_index;
+
   const [startDate, setStartDate] = React.useState(new Date(1595878949075));
   const [startTime, setStartTime] = React.useState(new Date(1595878949075));
   const [endDate, setEndDate] = React.useState(
@@ -92,16 +94,14 @@ export default function Charts(entrance_index = 0) {
   const [updateWithTime, setUpdateWithTime] = React.useState(false);
 
   useEffect(() => {
-    var timeID = setInterval(() => {}, REFRESH_RATE);
-
-    return () => {
-      clearInterval(timeID);
-    };
-  });
-
-  useEffect(() => {
-    //const mock = new MockAdapter(axios);
+    const mock = new MockAdapter(axios);
     //mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
+    mock
+      .onGet(server_url + "/video")
+      .reply(
+        200,
+        "https://ve450videos.s3-ap-southeast-1.amazonaws.com/video_180_239.mp4"
+      );
 
     const fetchData = async (
       start_timestamp,
@@ -114,18 +114,17 @@ export default function Charts(entrance_index = 0) {
         start_timestamp.toString() +
         "&end=" +
         end_timestamp.toString();
-      console.log("axios url: " + url);
-      console.log("axios start");
 
       let result;
       try {
         result = await axios.get(url);
       } catch (error) {
         console.log(Object.keys(error), error.message);
-        alert("no data!");
+        //alert("no data!");
+        console.log("fetch chart data error: no data");
       }
-      console.log("axios finish");
-      console.log("axios result: " + result);
+      console.log("chart axios finish");
+      console.log("chart axios result: " + result);
 
       if (result && result.data) {
         const data = result.data;
@@ -135,7 +134,7 @@ export default function Charts(entrance_index = 0) {
 
         let new_data = [];
         let full_data = [];
-        console.log(entrance_index);
+        console.log("entrance: ", entrance_index);
 
         for (let i = 0; i < in_array.length; i++) {
           let new_time = new Date(start_time + i * 600000);
@@ -180,7 +179,35 @@ export default function Charts(entrance_index = 0) {
 
         setShowData(new_data);
         setFullData(full_data);
-        console.log(chartKey);
+      }
+    };
+
+    const fetchVideoUrl = async (start_timestamp, end_timestamp) => {
+      const url =
+        server_url +
+        "/video?start=" +
+        start_timestamp.toString() +
+        "&end=" +
+        end_timestamp.toString();
+
+      let result;
+      try {
+        //result = await axios.get(url);
+        result = await axios.get(server_url + "/video");
+      } catch (error) {
+        console.log(Object.keys(error), error.message);
+        //alert("no video!");
+        console.log("fetch video error: no video");
+      }
+      console.log("video axios finish");
+      console.log("video axios result: " + result);
+      console.log(result);
+
+      if (result && result.data) {
+        props.setVideoUrl(result.data);
+        props.setVideoDuration(
+          parseInt((end_timestamp - start_timestamp) / 1000)
+        );
       }
     };
 
@@ -215,13 +242,18 @@ export default function Charts(entrance_index = 0) {
         end_timestamp.getTime() - time_zone_offset,
         false
       );
+      fetchVideoUrl(
+        start_timestamp.getTime() - time_zone_offset,
+        end_timestamp.getTime() - time_zone_offset
+      );
     }
-  }, [chartKey, updateWithTime, entrance_index]);
-
-  useEffect(() => {
-    const str = JSON.stringify(startDate);
-    const date = Date(str);
-  }, [startDate, startTime]);
+  }, [
+    chartKey,
+    updateWithTime,
+    entrance_index,
+    props.setVideoUrl,
+    props.setVideoDuration,
+  ]);
 
   //const chart = switchChart(chartIndex, dataStartIndex, TEST_DATA);
   const chart = switchChart(chartIndex, showData, fullData, chartKey);

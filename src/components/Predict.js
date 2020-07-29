@@ -122,7 +122,8 @@ export default function Predict(entrance_index = 0) {
         result = await axios.get(url);
       } catch (error) {
         console.log(Object.keys(error), error.message);
-        alert("no data!");
+        //alert("no data!");
+        console.log("no data");
       }
       console.log("axios finish");
       console.log("axios result: " + result);

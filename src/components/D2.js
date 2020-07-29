@@ -3,8 +3,11 @@ import React from "react";
 //import PropTypes from 'prop-types';
 import Live from "components/Live";
 import MEC from "components/MultiEntrancesCharts";
+import { useState } from "react";
 
 export default function D2() {
+  const [videoStartUrl, setVideoStartUrl] = useState("");
+  const [videoDisplayDuration, setVideoDisplayDuration] = useState(0);
   return (
     <div className="myContainer">
       <h1>
@@ -16,15 +19,22 @@ export default function D2() {
         <div className="column">
           <div className="content-box">
             <h3>Human traffic statistics</h3>
-            <MEC />
+            <MEC
+              setVideoStartUrl={(url) => {
+                setVideoStartUrl(url);
+              }}
+              setVideoDuration={(duration) => {
+                setVideoDisplayDuration(duration);
+              }}
+            />
           </div>
         </div>
 
         <div className="column">
           <div className="content-box">
-            <h3>Live demo</h3>
+            <h3>Video demo</h3>
 
-            <Live />
+            <Live startUrl={videoStartUrl} key={videoStartUrl} />
           </div>
         </div>
       </div>

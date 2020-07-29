@@ -15,7 +15,7 @@ function Copyright() {
         UM-SJTU VE450 Group 23
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
+      {"."}{" "}
     </Typography>
   );
 }

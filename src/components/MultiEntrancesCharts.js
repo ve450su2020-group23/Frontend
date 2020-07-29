@@ -8,10 +8,9 @@ import Select from "@material-ui/core/Select";
 import Charts from "components/Charts";
 import "static/css/MultiEntrancesCharts.css";
 
-export default function MEC() {
+export default function MEC({ setVideoStartUrl, setVideoDuration }) {
   const [entranceIndex, setEntranceIndex] = useState(0);
 
-  const chart = Charts(entranceIndex);
   return (
     <div>
       <div className="form-control-container">
@@ -35,7 +34,15 @@ export default function MEC() {
         </FormControl>
       </div>
 
-      {chart}
+      <Charts
+        entrance_index={entranceIndex}
+        setVideoUrl={(url) => {
+          setVideoStartUrl(url);
+        }}
+        setVideoDuration={(duration) => {
+          setVideoDuration(duration);
+        }}
+      />
     </div>
   );
 }

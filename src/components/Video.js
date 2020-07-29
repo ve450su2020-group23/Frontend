@@ -4,7 +4,7 @@ import React from "react";
 export default function Video() {
   return (
     <div className="myContainer">
-      <h1>Demo Video</h1>
+      <h1>Introduction Video</h1>
       <div className="slide">
         <div className="frame-container">
           <iframe
