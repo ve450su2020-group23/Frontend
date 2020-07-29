@@ -7,6 +7,7 @@ import { useStyles } from "static/constant/USESTYLES.js";
 
 import D1 from "components/D1.js";
 import D2 from "components/D2.js";
+import D3 from "components/D3.js";
 import Footer from "components/Footer.js";
 import Hero from "components/Hero.js";
 import MyAppBar from "components/AppBar.js";
@@ -41,6 +42,14 @@ export default function App() {
         className={clsx(classes.footer)}
       >
         <D2 />
+      </Container>
+
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
+      >
+        <D3 />
       </Container>
 
       <Container

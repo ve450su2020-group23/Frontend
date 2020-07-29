@@ -5,17 +5,15 @@ export default function Live() {
   return (
     <div>
       <div className="frame-container">
-        <iframe
-          className="responsive-frame"
-          src="//player.bilibili.com/player.html?aid=498960339&bvid=BV1rK411J7pn&cid=216125044&page=1"
-          scrolling="no"
-          border="0"
-          frameBorder="no"
-          allowFullScreen={true}
-        >
-          {" "}
-        </iframe>
-        ;
+        <div className="responsive-frame">
+          <video controls>
+            <source
+              src="https://ve450videos.s3-ap-southeast-1.amazonaws.com/video_0_6.mp4"
+              type="video/mp4"
+            ></source>
+          </video>
+          ;
+        </div>
       </div>
     </div>
   );
