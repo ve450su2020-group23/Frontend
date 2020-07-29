@@ -72,6 +72,9 @@ export default function Live({ startUrl, duration }) {
           <Button onClick={next}>Next</Button>
         </ButtonGroup>
       </div>
+      <h3>
+        Video time: {currentTimestamp} - {currentTimestamp + 59}
+      </h3>
       <div className="frame-container">
         <div className="responsive-frame">
           <video controls autoPlay muted src={videoCurrentUrl}></video>

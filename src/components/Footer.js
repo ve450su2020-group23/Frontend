@@ -7,6 +7,14 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
+const CONTACT_MAP = {
+  "Zhihao Ruan": "https://zhihaoruan.xyz/",
+  "Zekun Li": "https://github.com/kzlkz",
+  "Zhikai Chen": "https://github.com/CurryTang",
+  "Zihao Shen": "https://github.com/kokoronoinori",
+  "Jiayu Yi": "https://github.com/yihellen",
+};
+
 function Copyright() {
   return (
     <Typography variant="body2" color="inherit" align="center">
@@ -58,7 +66,12 @@ export default function Footer(classes) {
             <ul>
               {footer.description.map((item) => (
                 <li key={item}>
-                  <Link href="#" variant="subtitle1" color="inherit">
+                  <Link
+                    href={CONTACT_MAP[item]}
+                    variant="subtitle1"
+                    color="inherit"
+                    target="_blank"
+                  >
                     {item}
                   </Link>
                 </li>
