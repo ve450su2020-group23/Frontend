@@ -16,6 +16,7 @@ import {
   REFRESH_RATE,
   SHOW_DATA_POINT_NUM,
   time_zone_offset,
+  server_url,
 } from "static/constant/CONSTANT";
 import {
   MuiPickersUtilsProvider,
@@ -99,8 +100,8 @@ export default function Charts(entrance_index = 0) {
   });
 
   useEffect(() => {
-    const mock = new MockAdapter(axios);
-    mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
+    //const mock = new MockAdapter(axios);
+    //mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
 
     const fetchData = async (
       start_timestamp,
@@ -108,10 +109,24 @@ export default function Charts(entrance_index = 0) {
       slice_newest_data
     ) => {
       const url =
-        "/data_" + start_timestamp.toString + "_" + end_timestamp.toString();
-      const result = await axios(`/data_start_end`);
+        server_url +
+        "/data_start_end?start=" +
+        start_timestamp.toString() +
+        "&end=" +
+        end_timestamp.toString();
+      console.log("axios url: " + url);
+      console.log("axios start");
 
-      //setShowData(result.data);
+      let result;
+      try {
+        result = await axios.get(url);
+      } catch (error) {
+        console.log(Object.keys(error), error.message);
+        alert("no data!");
+      }
+      console.log("axios finish");
+      console.log("axios result: " + result);
+
       if (result && result.data) {
         const data = result.data;
         const start_time = Date.now();
@@ -171,13 +186,15 @@ export default function Charts(entrance_index = 0) {
 
     let start_timestamp = getNowDate();
     let end_timestamp = getNowDate();
-
     if (startDate && startTime && startDate.isValid && startTime.isValid) {
       assignTime(start_timestamp, startDate, startTime);
     }
     if (endDate && endTime && endDate.isValid && endTime.isValid) {
       assignTime(end_timestamp, endDate, endTime);
     }
+
+    console.log("starttime: ", start_timestamp);
+    console.log("endtime: ", end_timestamp);
 
     if (updateWithTime) {
       var timeID = setInterval(() => {

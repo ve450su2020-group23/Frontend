@@ -4,6 +4,8 @@ export const REFRESH_RATE = 5000;
 
 export const SHOW_DATA_POINT_NUM = 10;
 
+export const server_url = "http://111.186.58.231:8990/";
+
 export const DR1 =
   "https://show.zohopublic.com/publish/31phdd1c2df506a484466aade797b9869fbe1";
 
