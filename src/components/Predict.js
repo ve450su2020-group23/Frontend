@@ -151,18 +151,11 @@ export default function Predict(entrance_index = 0) {
             ":" +
             ts.split(" ")[1].split(":")[1].toString();
 
-          var enter = 0;
-          var leave = 0;
-          if (i > 0) {
-            enter = in_array[i] - in_array[i - time_interval];
-            leave = out_array[i] - out_array[i - time_interval];
-          }
-
           full_data.push({
             Date: date,
             Timestamp: timestamp,
-            Enter: enter,
-            Leave: leave,
+            Enter: in_array[i],
+            Leave: out_array[i],
           });
         }
 
