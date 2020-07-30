@@ -152,11 +152,7 @@ export default function Charts(props) {
         console.log("entrance: ", entrance_index);
         var time_interval = parseInt(in_array.length / 10);
 
-        for (
-          let i = 0;
-          i < in_array.length;
-          i = i + Math.max(time_interval, 1)
-        ) {
+        for (let i = 0; i < in_array.length; i++) {
           var date_object = new Date(timestamp_array[i] * 1000);
           var date =
             (date_object.getMonth() + 1).toString() +
@@ -186,19 +182,20 @@ export default function Charts(props) {
           new_data = JSON.parse(JSON.stringify(new_data)).reverse();
         } else {
           if (full_data.length < SHOW_DATA_POINT_NUM) {
-            new_data = full_data.slice(0, in_array.length);
+            new_data = full_data;
           } else {
             const interval = parseInt(full_data.length / SHOW_DATA_POINT_NUM);
             for (let i = 0; i < SHOW_DATA_POINT_NUM; i++) {
               new_data.push(full_data[i * interval]);
+              console.log(full_data[i * interval]);
             }
+            console.log("111");
           }
-
-          new_data = full_data.slice(
-            0,
-            Math.min(SHOW_DATA_POINT_NUM, in_array.length)
-          );
         }
+        console.log("full_data");
+        console.log(full_data);
+        console.log("new_data");
+        console.log(new_data);
 
         setShowData(new_data);
         setFullData(full_data);

@@ -83,11 +83,12 @@ export default function Live({ startUrl, duration }) {
     videoTime = (
       <h3>
         {" "}
-        Video time: {videoStartDate.getMonth().toString()}.
-        {videoStartDate.getDate().toString()}{" "}
+        Video time: {(videoStartDate.getMonth() + 1).toString()}.
+        {(videoStartDate.getDate() + 1).toString()}{" "}
         {videoStartDate.getHours().toString()}:
         {addZero(videoStartDate.getMinutes()).toString()} -{" "}
-        {videoEndDate.getMonth().toString()}.{videoEndDate.getDate().toString()}{" "}
+        {(videoEndDate.getMonth() + 1).toString()}.
+        {(videoEndDate.getDate() + 1).toString()}{" "}
         {videoEndDate.getHours().toString()}:
         {addZero(videoEndDate.getMinutes()).toString()}
       </h3>
