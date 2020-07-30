@@ -117,7 +117,13 @@ export default function Live({ startUrl, duration }) {
       Current Video Url: {videoCurrentUrl}
       <div className="frame-container">
         <div className="responsive-frame">
-          <video controls autoPlay muted src={videoCurrentUrl}></video>
+          <video
+            muted
+            autoPlay
+            controls
+            src={videoCurrentUrl}
+            type='video/webm; codecs="vp8, vorbis"'
+          ></video>
         </div>
       </div>
     </div>
