@@ -41,19 +41,55 @@ function useWindowSize() {
   return windowSize;
 }
 
+function useScreenTop() {
+  const isClient = typeof window === "object";
+
+  function getTop() {
+    return {
+      screenTop: isClient ? window.pageYOffset : undefined,
+    };
+  }
+
+  const [screenTop, setScreenTop] = useState(getTop);
+
+  useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleScroll() {
+      setScreenTop(getTop());
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return screenTop;
+}
+
 export default function MyAppBar(classes) {
   const size = useWindowSize();
+  const screenTop = useScreenTop();
+  console.log("screen top: ", screenTop);
   const [showNav, setShowNav] = useState(false);
   var toolBar = "toolBar";
+  var appBar = "appBar";
+  if (screenTop.screenTop < 70) {
+    appBar = "";
+  }
   const links = [
+    { name: "About", href: "#" },
     { name: "Deliverables", href: "#D1" },
     { name: "Notes", href: "#Notes" },
     { name: "Video", href: "#Video" },
-    { name: "How this works", href: "#" },
     { name: "Contact", href: "#Contact" },
   ];
 
   const navItems = [
+    <a href="#" style={menu_item_style}>
+      About
+    </a>,
     <a href="#D1" style={menu_item_style}>
       Deliverables
     </a>,
@@ -62,9 +98,6 @@ export default function MyAppBar(classes) {
     </a>,
     <a href="#Video" style={menu_item_style}>
       Video
-    </a>,
-    <a href="#" style={menu_item_style}>
-      How this works
     </a>,
     <a href="#Contact" style={menu_item_style}>
       Contact
@@ -88,7 +121,7 @@ export default function MyAppBar(classes) {
   }
 
   return (
-    <AppBar elevation={0} className={classes.appBar}>
+    <AppBar elevation={0} className={(classes.appBar, appBar)}>
       <SideNav
         showNav={showNav}
         onHideNav={() => setShowNav(false)}

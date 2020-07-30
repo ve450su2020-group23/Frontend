@@ -14,6 +14,12 @@ export default function D3() {
           <div className="content-box">
             <h3>Human traffic statistics</h3>
             {charts}
+            *Note: the number of <b>LINE/BAR</b> at each <b>timestamp </b>is{" "}
+            <b>
+              the net in/out value in the previous time interval (between two
+              timestamp).{" "}
+            </b>{" "}
+            For <b>TABLE</b>, the number is <b>the accumulated value.</b>
           </div>
         </div>
       </div>

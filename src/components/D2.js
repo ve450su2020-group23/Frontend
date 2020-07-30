@@ -27,6 +27,12 @@ export default function D2() {
                 setVideoDisplayDuration(duration);
               }}
             />
+            *Note: the number of <b>LINE/BAR</b> at each <b>timestamp </b>is{" "}
+            <b>
+              the net in/out value in the previous time interval (between two
+              timestamp).{" "}
+            </b>{" "}
+            For <b>TABLE</b>, the number is <b>the accumulated value.</b>
           </div>
         </div>
 

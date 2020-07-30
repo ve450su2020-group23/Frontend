@@ -126,7 +126,9 @@ export default function Charts(props) {
         result = await axios.get(url);
       } catch (error) {
         console.log(Object.keys(error), error.message);
-        console.log(error.response.status);
+        if (error.response) {
+          console.log(error.response.status);
+        }
         //alert("no data!");
         console.log("fetch chart data error: no data");
       }
@@ -192,11 +194,8 @@ export default function Charts(props) {
 
     const fetchVideoUrl = async (start_timestamp, end_timestamp) => {
       const url =
-        server_url +
-        "/video?start=" +
-        start_timestamp.toString() +
-        "&end=" +
-        end_timestamp.toString();
+        server_url + "/video?ts=" + parseInt(start_timestamp / 1000).toString();
+      console.log("axios video url: ", url);
 
       let result;
       try {
@@ -212,8 +211,8 @@ export default function Charts(props) {
       console.log(result);
 
       if (result && result.data) {
-        props.setVideoUrl(result.data.video);
         console.log("Fetch video url: ", result.data.video);
+        props.setVideoUrl(result.data.video);
         props.setVideoDuration(
           parseInt((end_timestamp - start_timestamp) / 1000)
         );

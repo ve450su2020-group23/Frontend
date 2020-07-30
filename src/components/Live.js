@@ -3,6 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { ButtonGroup, Button } from "@material-ui/core";
 import { VIDEO_DURATION, VIDEO_URL_PREFIX } from "static/constant/CONSTANT";
+
+Date.prototype.isValid = function () {
+  return this.getTime() === this.getTime();
+};
+
 export default function Live({ startUrl, duration }) {
   const [videoCurrentUrl, setVideoCurrentUrl] = useState(startUrl);
   const [startTimestamp, setStartTimestamp] = useState(0);
@@ -15,9 +20,9 @@ export default function Live({ startUrl, duration }) {
 
     if (startUrl) {
       let split_array = startUrl.split("_");
-      setStartTimestamp(parseInt(split_array[split_array.length - 2]));
-      setCurrentTimestamp(parseInt(split_array[split_array.length - 2]));
-      setEndTimestamp(parseInt(split_array[split_array.length - 2]) + duration);
+      setStartTimestamp(parseInt(split_array[split_array.length - 1]));
+      setCurrentTimestamp(parseInt(split_array[split_array.length - 1]));
+      setEndTimestamp(parseInt(split_array[split_array.length - 1]) + duration);
     }
   }, [startUrl, duration]);
 
@@ -64,6 +69,35 @@ export default function Live({ startUrl, duration }) {
   }
 
   console.log("currentVideoUrl: ", videoCurrentUrl);
+
+  var videoStartDate = new Date(currentTimestamp * 1000);
+  var videoEndDate = new Date((currentTimestamp + VIDEO_DURATION) * 1000);
+
+  var videoTime = (
+    <h3>
+      {" "}
+      Video time: {currentTimestamp} - {currentTimestamp + 59}
+    </h3>
+  );
+  if (
+    videoStartDate &&
+    videoEndDate &&
+    videoStartDate.isValid() &&
+    videoEndDate.isValid()
+  ) {
+    videoTime = (
+      <h3>
+        {" "}
+        Video time: {videoStartDate.getMonth().toString()}.
+        {videoStartDate.getDate().toString()}{" "}
+        {videoStartDate.getHours().toString()}:
+        {videoStartDate.getMinutes().toString()} -{" "}
+        {videoEndDate.getMonth().toString()}.{videoEndDate.getDate().toString()}{" "}
+        {videoEndDate.getHours().toString()}:
+        {videoEndDate.getMinutes().toString()}
+      </h3>
+    );
+  }
   return (
     <div>
       <div className="button-group">
@@ -72,9 +106,8 @@ export default function Live({ startUrl, duration }) {
           <Button onClick={next}>Next</Button>
         </ButtonGroup>
       </div>
-      <h3>
-        Video time: {currentTimestamp} - {currentTimestamp + 59}
-      </h3>
+      {videoTime}
+      Current Video Url: {videoCurrentUrl}
       <div className="frame-container">
         <div className="responsive-frame">
           <video controls autoPlay muted src={videoCurrentUrl}></video>

@@ -37,6 +37,10 @@
   }
 }
 
+.appBar {
+  opacity: 0.8;
+}
+
 .myContainer {
   width: 90%;
   margin: auto;
