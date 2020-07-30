@@ -31,9 +31,34 @@ export default function MyBar(props) {
       tickCount={5}
     ></XAxis>
   );
-  if (window.screen.width < 520) {
+
+  let xAxis2 = (
+    <XAxis
+      dataKey="Date"
+      height={50}
+      xAxisId={1}
+      axisLine={false}
+      tickLine={false}
+    >
+      <Label value="Timestamp" offset={0}></Label>
+    </XAxis>
+  );
+  if (window.screen.width < 1400) {
     xAxis = (
       <XAxis dataKey="Timestamp" height={20} xAxisId={0} tickCount={5}></XAxis>
+    );
+
+    xAxis2 = (
+      <XAxis
+        dataKey="Date"
+        height={50}
+        xAxisId={1}
+        axisLine={false}
+        tickLine={false}
+        tickCount={5}
+      >
+        <Label value="Timestamp" offset={0}></Label>
+      </XAxis>
     );
   }
 
@@ -51,16 +76,7 @@ export default function MyBar(props) {
         <CartesianGrid strokeDasharray="3 3" />
 
         {xAxis}
-
-        <XAxis
-          dataKey="Date"
-          height={50}
-          xAxisId={1}
-          axisLine={false}
-          tickLine={false}
-        >
-          <Label value="Timestamp" offset={0}></Label>
-        </XAxis>
+        {xAxis2}
 
         <YAxis>
           <Label

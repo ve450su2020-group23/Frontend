@@ -14,12 +14,6 @@ import {
   tspan,
 } from "recharts";
 
-class CustomizedAxisTick extends React.Component {
-  render() {
-    return <div>1</div>;
-  }
-}
-
 export default function MyLine(props) {
   let xAxis = (
     <XAxis
@@ -30,9 +24,34 @@ export default function MyLine(props) {
       tickCount={5}
     ></XAxis>
   );
-  if (window.screen.width < 520) {
+
+  let xAxis2 = (
+    <XAxis
+      dataKey="Date"
+      height={50}
+      xAxisId={1}
+      axisLine={false}
+      tickLine={false}
+      tickCount={5}
+    >
+      <Label value="Timestamp" offset={0}></Label>
+    </XAxis>
+  );
+  if (window.screen.width < 1400) {
     xAxis = (
       <XAxis dataKey="Timestamp" height={20} xAxisId={0} tickCount={5}></XAxis>
+    );
+    xAxis2 = (
+      <XAxis
+        dataKey="Date"
+        height={50}
+        xAxisId={1}
+        axisLine={false}
+        tickLine={false}
+        tickCount={5}
+      >
+        <Label value="Timestamp" offset={0}></Label>
+      </XAxis>
     );
   }
   return (
@@ -50,16 +69,7 @@ export default function MyLine(props) {
 
         {xAxis}
 
-        <XAxis
-          dataKey="Date"
-          height={50}
-          xAxisId={1}
-          axisLine={false}
-          tickLine={false}
-          tickCount={5}
-        >
-          <Label value="Timestamp" offset={0}></Label>
-        </XAxis>
+        {xAxis2}
 
         <YAxis>
           <Label

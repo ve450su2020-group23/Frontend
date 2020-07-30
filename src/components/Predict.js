@@ -135,13 +135,9 @@ export default function Predict(entrance_index = 0) {
         let full_data = [];
         console.log(entrance_index);
 
-        var time_interval = parseInt(in_array.length / 10);
+        //var time_interval = parseInt(in_array.length / 10);
 
-        for (
-          let i = 0;
-          i < in_array.length;
-          i = i + Math.max(time_interval, 1)
-        ) {
+        for (let i = 0; i < in_array.length; i++) {
           // 2020-08-01 15:00:00
           var ts = timestamp_array[i];
           var date =
@@ -179,11 +175,6 @@ export default function Predict(entrance_index = 0) {
               new_data.push(full_data[i * interval]);
             }
           }
-
-          new_data = full_data.slice(
-            0,
-            Math.min(SHOW_DATA_POINT_NUM, in_array.length)
-          );
         }
 
         setShowData(new_data);
