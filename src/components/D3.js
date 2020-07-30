@@ -7,7 +7,7 @@ export default function D3() {
   let charts = Predict(0);
   return (
     <div className="myContainer">
-      <h1>Deliverable 3: People flow statistics prediction</h1>
+      <h1>Deliverable 2: People flow statistics prediction</h1>
 
       <div className="content">
         <div className="column-lg">

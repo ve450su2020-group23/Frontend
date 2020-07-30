@@ -11,7 +11,7 @@ export default function D2() {
   return (
     <div className="myContainer">
       <h1>
-        Deliverable 2: People counting system with automatic entrances detection
+        Deliverable 1: People counting system with automatic entrances detection
         and separated counting
       </h1>
 

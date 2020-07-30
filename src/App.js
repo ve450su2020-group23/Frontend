@@ -31,15 +31,6 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
-        id="D1"
-      >
-        <D1 />
-      </Container>
-
-      <Container
-        maxWidth="xl"
-        component="main"
-        className={clsx(classes.footer)}
       >
         <D2 />
       </Container>
@@ -76,3 +67,14 @@ export default function App() {
     </React.Fragment>
   );
 }
+/*
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
+        id="D1"
+      >
+        <D1 />
+      </Container>
+
+*/
