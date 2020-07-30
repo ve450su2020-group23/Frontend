@@ -77,13 +77,17 @@ function assignTime(new_date, date, time) {
 export default function Charts(props) {
   const entrance_index = props.entrance_index;
 
-  const [startDate, setStartDate] = React.useState(new Date(1595878949075));
-  const [startTime, setStartTime] = React.useState(new Date(1595878949075));
+  const [startDate, setStartDate] = React.useState(
+    new Date(1596126935000 + time_zone_offset)
+  );
+  const [startTime, setStartTime] = React.useState(
+    new Date(1596126935000 + time_zone_offset)
+  );
   const [endDate, setEndDate] = React.useState(
-    new Date(1595878949075 + 36000000)
+    new Date(1596127535000 + time_zone_offset)
   );
   const [endTime, setEndTime] = React.useState(
-    new Date(1595878949075 + 36000000)
+    new Date(1596127535000 + time_zone_offset)
   );
 
   const [showData, setShowData] = React.useState([]);
@@ -141,24 +145,33 @@ export default function Charts(props) {
         const start_time = Date.now();
         const in_array = data.in;
         const out_array = data.out;
+        const timestamp_array = data.time;
 
         let new_data = [];
         let full_data = [];
         console.log("entrance: ", entrance_index);
+        var time_interval = parseInt(in_array.length / 10);
 
-        for (let i = 0; i < in_array.length; i++) {
-          let new_time = new Date(start_time + i * 600000);
-          let date =
-            new_time.getMonth().toString() +
+        for (
+          let i = 0;
+          i < in_array.length;
+          i = i + Math.max(time_interval, 1)
+        ) {
+          var date_object = new Date(timestamp_array[i] * 1000);
+          var date =
+            (date_object.getMonth() + 1).toString() +
             "." +
-            new_time.getDate().toString();
-          let time_stamp =
-            new_time.getHours().toString() +
+            (date_object.getDate() + 1).toString();
+          console.log(date);
+
+          var timestamp =
+            date_object.getHours().toString() +
             ":" +
-            addZero(new_time.getMinutes()).toString();
+            addZero(date_object.getMinutes()).toString();
+
           full_data.push({
             Date: date,
-            Timestamp: time_stamp,
+            Timestamp: timestamp,
             Enter: in_array[i][entrance_index],
             Leave: out_array[i][entrance_index],
           });
@@ -194,13 +207,12 @@ export default function Charts(props) {
 
     const fetchVideoUrl = async (start_timestamp, end_timestamp) => {
       const url =
-        server_url + "/video?ts=" + parseInt(start_timestamp / 1000).toString();
+        server_url + "video?ts=" + parseInt(start_timestamp / 1000).toString();
       console.log("axios video url: ", url);
 
       let result;
       try {
-        //result = await axios.get(url);
-        result = await axios.get(server_url + "/video");
+        result = await axios.get(url);
       } catch (error) {
         console.log(Object.keys(error), error.message);
         //alert("no video!");

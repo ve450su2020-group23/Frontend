@@ -42,13 +42,7 @@ export default function Live({ startUrl, duration }) {
       return;
     }
     let newTimestamp = currentTimestamp - VIDEO_DURATION;
-    let url =
-      VIDEO_URL_PREFIX +
-      "video_" +
-      newTimestamp.toString() +
-      "_" +
-      (newTimestamp + VIDEO_DURATION - 1).toString() +
-      ".mp4";
+    let url = VIDEO_URL_PREFIX + "video_" + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(newTimestamp);
     setVideoCurrentUrl(url);
     console.log(videoCurrentUrl);
@@ -63,13 +57,7 @@ export default function Live({ startUrl, duration }) {
       return;
     }
     let newTimestamp = currentTimestamp + VIDEO_DURATION;
-    let url =
-      VIDEO_URL_PREFIX +
-      "video_" +
-      newTimestamp.toString() +
-      "_" +
-      (newTimestamp + VIDEO_DURATION - 1).toString() +
-      ".mp4";
+    let url = VIDEO_URL_PREFIX + "video_" + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(currentTimestamp + VIDEO_DURATION);
     setVideoCurrentUrl(url);
     console.log(videoCurrentUrl);

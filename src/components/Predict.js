@@ -137,7 +137,11 @@ export default function Predict(entrance_index = 0) {
 
         var time_interval = parseInt(in_array.length / 10);
 
-        for (let i = 0; i < in_array.length; i += time_interval) {
+        for (
+          let i = 0;
+          i < in_array.length;
+          i = i + Math.max(time_interval, 1)
+        ) {
           // 2020-08-01 15:00:00
           var ts = timestamp_array[i];
           var date =
