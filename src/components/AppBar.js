@@ -71,7 +71,6 @@ function useScreenTop() {
 export default function MyAppBar(classes) {
   const size = useWindowSize();
   const screenTop = useScreenTop();
-  console.log("screen top: ", screenTop);
   const [showNav, setShowNav] = useState(false);
   var toolBar = "toolBar";
   var appBar = "appBar";

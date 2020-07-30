@@ -8,6 +8,13 @@ Date.prototype.isValid = function () {
   return this.getTime() === this.getTime();
 };
 
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
 export default function Live({ startUrl, duration }) {
   const [videoCurrentUrl, setVideoCurrentUrl] = useState(startUrl);
   const [startTimestamp, setStartTimestamp] = useState(0);
@@ -91,10 +98,10 @@ export default function Live({ startUrl, duration }) {
         Video time: {videoStartDate.getMonth().toString()}.
         {videoStartDate.getDate().toString()}{" "}
         {videoStartDate.getHours().toString()}:
-        {videoStartDate.getMinutes().toString()} -{" "}
+        {addZero(videoStartDate.getMinutes()).toString()} -{" "}
         {videoEndDate.getMonth().toString()}.{videoEndDate.getDate().toString()}{" "}
         {videoEndDate.getHours().toString()}:
-        {videoEndDate.getMinutes().toString()}
+        {addZero(videoEndDate.getMinutes()).toString()}
       </h3>
     );
   }

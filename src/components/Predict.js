@@ -75,14 +75,10 @@ function assignTime(new_date, date, time) {
 }
 
 export default function Predict(entrance_index = 0) {
-  const [startDate, setStartDate] = React.useState(new Date(1595878949075));
-  const [startTime, setStartTime] = React.useState(new Date(1595878949075));
-  const [endDate, setEndDate] = React.useState(
-    new Date(1595878949075 + 36000000)
-  );
-  const [endTime, setEndTime] = React.useState(
-    new Date(1595878949075 + 36000000)
-  );
+  const [startDate, setStartDate] = React.useState(new Date(1596267749000));
+  const [startTime, setStartTime] = React.useState(new Date(1596267749000));
+  const [endDate, setEndDate] = React.useState(new Date(1596562949000));
+  const [endTime, setEndTime] = React.useState(new Date(1596562949000));
 
   const [showData, setShowData] = React.useState([]);
   const [fullData, setFullData] = React.useState([]);
@@ -110,10 +106,10 @@ export default function Predict(entrance_index = 0) {
     ) => {
       const url =
         server_url +
-        "/data_start_end?start=" +
-        start_timestamp.toString() +
+        "predict?start=" +
+        parseInt(start_timestamp / 1000).toString() +
         "&end=" +
-        end_timestamp.toString();
+        parseInt(end_timestamp / 1000).toString();
       console.log("axios url: " + url);
       console.log("axios start");
 
@@ -125,12 +121,13 @@ export default function Predict(entrance_index = 0) {
         //alert("no data!");
         console.log("no data");
       }
-      console.log("axios finish");
-      console.log("axios result: " + result);
+      console.log("predict axios finish");
+      console.log("predict axios result: " + result);
+      console.log(result);
 
       if (result && result.data) {
         const data = result.data;
-        const start_time = Date.now();
+        const timestamp_array = data.ts;
         const in_array = data.in;
         const out_array = data.out;
 
@@ -138,21 +135,34 @@ export default function Predict(entrance_index = 0) {
         let full_data = [];
         console.log(entrance_index);
 
-        for (let i = 0; i < in_array.length; i++) {
-          let new_time = new Date(start_time + i * 600000);
-          let date =
-            new_time.getMonth().toString() +
-            "." +
-            new_time.getDate().toString();
-          let time_stamp =
-            new_time.getHours().toString() +
+        var time_interval = parseInt(in_array.length / 10);
+
+        for (let i = 0; i < in_array.length; i += time_interval) {
+          // 2020-08-01 15:00:00
+          var ts = timestamp_array[i];
+          var date =
+            ts.split(" ")[0].split("-")[1].toString() +
+            "-" +
+            ts.split(" ")[0].split("-")[2].toString();
+          console.log(date);
+
+          var timestamp =
+            ts.split(" ")[1].split(":")[0].toString() +
             ":" +
-            addZero(new_time.getMinutes()).toString();
+            ts.split(" ")[1].split(":")[1].toString();
+
+          var enter = 0;
+          var leave = 0;
+          if (i > 0) {
+            enter = in_array[i] - in_array[i - time_interval];
+            leave = out_array[i] - out_array[i - time_interval];
+          }
+
           full_data.push({
             Date: date,
-            Timestamp: time_stamp,
-            Enter: in_array[i][entrance_index],
-            Leave: out_array[i][entrance_index],
+            Timestamp: timestamp,
+            Enter: enter,
+            Leave: leave,
           });
         }
 
