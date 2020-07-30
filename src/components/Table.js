@@ -11,6 +11,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
 const columns = [
+  { id: "Date", label: "Date", minWidth: 100, align: "center" },
   { id: "Timestamp", label: "Timestamp", minWidth: 100, align: "center" },
   { id: "Enter", label: "Enter", minWidth: 100, align: "center" },
   { id: "Leave", label: "Leave", minWidth: 100, align: "center" },
@@ -18,6 +19,7 @@ const columns = [
 
 function createData(data) {
   return {
+    Date: data.Date,
     Timestamp: data.Timestamp,
     Enter: data.Enter,
     Leave: data.Leave,

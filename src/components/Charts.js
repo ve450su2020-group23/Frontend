@@ -90,41 +90,49 @@ export default function Charts(props) {
   const [fullData, setFullData] = React.useState([]);
   const [chartIndex, setChartIndex] = useState(0);
   const [chartKey, setChartKey] = useState(0);
-
   const [updateWithTime, setUpdateWithTime] = React.useState(false);
 
   useEffect(() => {
-    const mock = new MockAdapter(axios);
+    //const mock = new MockAdapter(axios);
     //mock.onGet("/data_start_end").reply(200, TEST_API_DATA);
+    /*
     mock
       .onGet(server_url + "/video")
       .reply(
         200,
         "https://ve450videos.s3-ap-southeast-1.amazonaws.com/video_180_239.mp4"
       );
+      */
 
     const fetchData = async (
       start_timestamp,
       end_timestamp,
       slice_newest_data
     ) => {
+      start_timestamp = parseInt(start_timestamp / 1000);
+      end_timestamp = parseInt(end_timestamp / 1000);
       const url =
         server_url +
-        "/data_start_end?start=" +
+        "data_start_end?start=" +
         start_timestamp.toString() +
         "&end=" +
         end_timestamp.toString();
+      console.log("starttime: ", start_timestamp);
+      console.log("end_time: ", end_timestamp);
 
       let result;
       try {
+        console.log("chart fetch url: ", url);
         result = await axios.get(url);
       } catch (error) {
         console.log(Object.keys(error), error.message);
+        console.log(error.response.status);
         //alert("no data!");
         console.log("fetch chart data error: no data");
       }
       console.log("chart axios finish");
       console.log("chart axios result: " + result);
+      console.log(result);
 
       if (result && result.data) {
         const data = result.data;
@@ -204,7 +212,8 @@ export default function Charts(props) {
       console.log(result);
 
       if (result && result.data) {
-        props.setVideoUrl(result.data);
+        props.setVideoUrl(result.data.video);
+        console.log("Fetch video url: ", result.data.video);
         props.setVideoDuration(
           parseInt((end_timestamp - start_timestamp) / 1000)
         );
@@ -216,9 +225,13 @@ export default function Charts(props) {
     if (startDate && startTime && startDate.isValid && startTime.isValid) {
       assignTime(start_timestamp, startDate, startTime);
     }
+    console.log(startDate.getTime());
+    console.log(startTime.getTime());
     if (endDate && endTime && endDate.isValid && endTime.isValid) {
       assignTime(end_timestamp, endDate, endTime);
     }
+    console.log(endDate.getTime());
+    console.log(endTime.getTime());
 
     console.log("starttime: ", start_timestamp);
     console.log("endtime: ", end_timestamp);
