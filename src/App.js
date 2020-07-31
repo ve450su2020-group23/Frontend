@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import { useStyles } from "static/constant/USESTYLES.js";
 
-import D1 from "components/D1.js";
+//import D1 from "components/D1.js";
 import D2 from "components/D2.js";
 import D3 from "components/D3.js";
 import Footer from "components/Footer.js";
@@ -31,6 +31,7 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
+        id="D1"
       >
         <D2 />
       </Container>
