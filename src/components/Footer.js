@@ -44,7 +44,7 @@ const footers = [
     description: ["Allan Zhu", "Allen Zhu"],
   },
   {
-    title: "Instructors",
+    title: "Instructor",
     description: ["Chengbin Ma"],
   },
 ];
