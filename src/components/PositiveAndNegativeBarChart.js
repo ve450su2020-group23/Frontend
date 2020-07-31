@@ -89,8 +89,8 @@ export default function MyBar(props) {
         <Tooltip />
         <Legend />
         <ReferenceLine y={0} stroke="#000" />
-        <Bar isAnimationActive={false} dataKey="Enter" fill="#82ca9d" />
-        <Bar isAnimationActive={false} dataKey="Leave" fill="#8884d8" />
+        <Bar isAnimationActive={false} dataKey="Enter" fill="#FF0000" />
+        <Bar isAnimationActive={false} dataKey="Leave" fill="#000000" />
       </BarChart>
     </ResponsiveContainer>
   );

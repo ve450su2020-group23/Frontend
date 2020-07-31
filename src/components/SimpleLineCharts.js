@@ -85,14 +85,15 @@ export default function MyLine(props) {
           type="monotone"
           isAnimationActive={false}
           dataKey="Enter"
-          stroke="#82ca9d"
+          stroke="#FF0000"
+          strokeWidth={3}
         />
         <Line
           type="monotone"
           isAnimationActive={false}
           dataKey="Leave"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          stroke="#000000"
+          strokeWidth={3}
         />
       </LineChart>
     </ResponsiveContainer>
