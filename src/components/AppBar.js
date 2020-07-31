@@ -5,7 +5,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import GithubCorner from "react-github-corner";
 import SideNav, { MenuIcon } from "react-simple-sidenav";
 
 const menu_item_style = {
@@ -138,7 +137,6 @@ export default function MyAppBar(classes) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <GithubCorner href="#" />
           <span className="title-text">
             <span className="yellow-text">VE450 Group23 </span> Demo Page
           </span>
