@@ -78,9 +78,9 @@ export default function MyAppBar(classes) {
   }
   const links = [
     { name: "About", href: "#" },
+    { name: "Video", href: "#Video" },
     { name: "Deliverables", href: "#D1" },
     { name: "Notes", href: "#Notes" },
-    { name: "Video", href: "#Video" },
     { name: "Contact", href: "#Contact" },
   ];
 
@@ -88,14 +88,14 @@ export default function MyAppBar(classes) {
     <a href="#" style={menu_item_style}>
       About
     </a>,
+    <a href="#Video" style={menu_item_style}>
+      Video
+    </a>,
     <a href="#D1" style={menu_item_style}>
       Deliverables
     </a>,
     <a href="#Notes" style={menu_item_style}>
       Notes
-    </a>,
-    <a href="#Video" style={menu_item_style}>
-      Video
     </a>,
     <a href="#Contact" style={menu_item_style}>
       Contact

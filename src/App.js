@@ -31,6 +31,15 @@ export default function App() {
         maxWidth="xl"
         component="main"
         className={clsx(classes.footer)}
+        id="Video"
+      >
+        <Video />
+      </Container>
+
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
         id="D1"
       >
         <D2 />
@@ -51,15 +60,6 @@ export default function App() {
         id="Notes"
       >
         <Notes />
-      </Container>
-
-      <Container
-        maxWidth="xl"
-        component="main"
-        className={clsx(classes.footer)}
-        id="Video"
-      >
-        <Video />
       </Container>
 
       <div className="footer-container" id="Contact">
