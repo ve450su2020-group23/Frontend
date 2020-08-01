@@ -245,6 +245,11 @@ export default function Live({ startUrl, duration }) {
             type='video/webm; codecs="vp8, vorbis"'
           ></video>
         </div>
+        <div>
+          Note: If video failed to load, it is either the video does not exist
+          or the video is still processing. Please try another timestamp or try
+          again later.
+        </div>
       </div>
     </div>
   );

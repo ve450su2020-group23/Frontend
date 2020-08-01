@@ -1,6 +1,6 @@
 export const CHART_TYPES = ["Line", "Bar", "Table"]; // 0: Line; 1: Bar; 2: Table
 
-export const REFRESH_RATE = 5000;
+export const REFRESH_RATE = 10000;
 
 export const SHOW_DATA_POINT_NUM = 10;
 

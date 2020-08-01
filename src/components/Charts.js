@@ -239,19 +239,22 @@ export default function Charts(props) {
     if (endDate && endTime && endDate.isValid && endTime.isValid) {
       assignTime(end_timestamp, endDate, endTime);
     }
-    console.log(endDate.getTime());
-    console.log(endTime.getTime());
 
     console.log("starttime: ", start_timestamp);
     console.log("endtime: ", end_timestamp);
 
     if (updateWithTime) {
+      fetchVideoUrl(
+        start_timestamp.getTime() - time_zone_offset,
+        end_timestamp.getTime() - time_zone_offset
+      );
       var timeID = setInterval(() => {
         fetchData(
           start_timestamp.getTime() - time_zone_offset,
           end_timestamp.getTime() - time_zone_offset,
           true
         );
+
         setChartKey(chartKey + 1);
       }, REFRESH_RATE);
 
