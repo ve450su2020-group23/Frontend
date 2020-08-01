@@ -1,8 +1,33 @@
 import React from "react";
 //import PropTypes from 'prop-types';
 import { useState, useEffect } from "react";
+import DateFnsUtils from "@date-io/date-fns";
+import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 import { ButtonGroup, Button } from "@material-ui/core";
-import { VIDEO_DURATION, VIDEO_URL_PREFIX } from "static/constant/CONSTANT";
+import {
+  VIDEO_DURATION,
+  VIDEO_URL_PREFIX,
+  time_zone_offset,
+  server_url,
+} from "static/constant/CONSTANT";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+  KeyboardTimePicker,
+} from "@material-ui/pickers";
+
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
 
 Date.prototype.isValid = function () {
   return this.getTime() === this.getTime();
@@ -15,11 +40,33 @@ function addZero(i) {
   return i;
 }
 
+function getNowDate() {
+  return new Date(Date.now() + time_zone_offset);
+}
+
+function assignTime(new_date, date, time) {
+  new_date.setFullYear(date.getFullYear());
+  new_date.setMonth(date.getMonth());
+  new_date.setDate(date.getDate());
+  new_date.setHours(time.getHours());
+  new_date.setMinutes(time.getMinutes());
+  new_date.setSeconds(time.getSeconds());
+}
+
 export default function Live({ startUrl, duration }) {
+  const classes = useStyles();
+
   const [videoCurrentUrl, setVideoCurrentUrl] = useState(startUrl);
   const [startTimestamp, setStartTimestamp] = useState(0);
   const [currentTimestamp, setCurrentTimestamp] = useState(0);
   const [endTimestamp, setEndTimestamp] = useState(0);
+
+  const [startDate, setStartDate] = React.useState(
+    new Date(1596126935000 + time_zone_offset)
+  );
+  const [startTime, setStartTime] = React.useState(
+    new Date(1596126935000 + time_zone_offset)
+  );
 
   useEffect(() => {
     console.log("startUrl: ", startUrl);
@@ -33,7 +80,36 @@ export default function Live({ startUrl, duration }) {
     }
   }, [startUrl, duration]);
 
+  const fetchVideoUrl = async () => {
+    let start_timestamp = getNowDate();
+
+    if (startDate && startTime && startDate.isValid && startTime.isValid) {
+      assignTime(start_timestamp, startDate, startTime);
+    }
+
+    const url =
+      server_url + "video?ts=" + parseInt(start_timestamp / 1000).toString();
+    console.log("axios video url: ", url);
+
+    let result;
+    try {
+      result = await axios.get(url);
+    } catch (error) {
+      console.log(Object.keys(error), error.message);
+      console.log("fetch video error: no video");
+    }
+    console.log("video axios finish");
+    console.log("video axios result: " + result);
+    console.log(result);
+
+    if (result && result.data) {
+      console.log("Fetch video url: ", result.data.video);
+      setVideoCurrentUrl(result.data.video);
+    }
+  };
+
   function previous() {
+    /*
     if (currentTimestamp - VIDEO_DURATION < startTimestamp) {
       alert("No more previous videos!");
       console.log("currentTimestamp: ", currentTimestamp);
@@ -41,6 +117,8 @@ export default function Live({ startUrl, duration }) {
       console.log("No more previous videos!");
       return;
     }
+    */
+
     let newTimestamp = currentTimestamp - VIDEO_DURATION;
     let url = VIDEO_URL_PREFIX + "video_" + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(newTimestamp);
@@ -49,6 +127,7 @@ export default function Live({ startUrl, duration }) {
   }
 
   function next() {
+    /*
     if (currentTimestamp + VIDEO_DURATION >= endTimestamp) {
       alert("No more next videos!");
       console.log("currentTimestamp: ", currentTimestamp);
@@ -56,6 +135,8 @@ export default function Live({ startUrl, duration }) {
       console.log("No more next videos!");
       return;
     }
+    */
+
     let newTimestamp = currentTimestamp + VIDEO_DURATION;
     let url = VIDEO_URL_PREFIX + "video_" + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(currentTimestamp + VIDEO_DURATION);
@@ -74,6 +155,7 @@ export default function Live({ startUrl, duration }) {
       Video time: {currentTimestamp} - {currentTimestamp + 59}
     </h3>
   );
+
   if (
     videoStartDate &&
     videoEndDate &&
@@ -96,14 +178,63 @@ export default function Live({ startUrl, duration }) {
   }
   return (
     <div>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Grid container justify="space-around">
+          <KeyboardDatePicker
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="normal"
+            id="videoDate"
+            label="videoDate"
+            value={startDate}
+            onChange={(date) => setStartDate(date)}
+            KeyboardButtonProps={{
+              "aria-label": "change date",
+            }}
+          />
+
+          <KeyboardTimePicker
+            margin="normal"
+            id="videoTime"
+            label="videoTime"
+            value={startTime}
+            onChange={(time) => setStartTime(time)}
+            KeyboardButtonProps={{
+              "aria-label": "change time",
+            }}
+          />
+        </Grid>
+      </MuiPickersUtilsProvider>
+
+      <Button
+        variant="outlined"
+        color="secondary"
+        className="time-button"
+        onClick={() => fetchVideoUrl()}
+      >
+        Fetch Video By Time
+      </Button>
+
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField
+          id="standard-basic"
+          label="Video Url"
+          value={videoCurrentUrl}
+          onChange={(e) => {
+            setVideoCurrentUrl(e.target.value);
+          }}
+        />
+      </form>
+
+      {videoTime}
       <div className="button-group">
         <ButtonGroup color="primary" aria-label="outlined primary button group">
           <Button onClick={previous}>Previous</Button>
           <Button onClick={next}>Next</Button>
         </ButtonGroup>
       </div>
-      {videoTime}
-      Current Video Url: {videoCurrentUrl}
+
       <div className="frame-container">
         <div className="responsive-frame">
           <video

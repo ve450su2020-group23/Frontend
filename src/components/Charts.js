@@ -18,6 +18,7 @@ import {
   time_zone_offset,
   server_url,
 } from "static/constant/CONSTANT";
+
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -313,6 +314,31 @@ export default function Charts(props) {
           color="secondary"
           className="time-button"
           onClick={() => {
+            console.log(startDate);
+            console.log(startTime);
+            console.log(endDate);
+            console.log(endTime);
+
+            setEndDate(startDate);
+            setEndTime(
+              new Date((parseInt(startTime.getTime() / 1000) + 300) * 1000)
+            );
+            setStartDate(startDate);
+            setStartTime(
+              new Date((parseInt(startTime.getTime() / 1000) - 300) * 1000)
+            );
+            setUpdateWithTime(false);
+            setChartKey(chartKey + 1);
+          }}
+        >
+          Exact Around Start Time
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
             setEndDate(null);
             setEndTime(null);
             setStartDate(getNowDate());
@@ -323,6 +349,7 @@ export default function Charts(props) {
         >
           Start From Now
         </Button>
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
