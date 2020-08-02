@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 
 export default function Hero(props) {
   var hero = "hero";
+  var hero_title = "hero_title";
   return (
     <Container
       maxWidth="lg"
@@ -16,6 +17,7 @@ export default function Hero(props) {
         variant="h2"
         align="center"
         color="textPrimary"
+        className={hero_title}
         gutterBottom
       >
         Real-Time On-Device Flow Statistics Detection and Prediction

@@ -61,6 +61,13 @@ const IBMPlex = {
 
 const theme = createMuiTheme({
   typography: {
+    h2: {
+      fontSize: "3rem",
+    },
+
+    h5: {
+      fontSize: "1.5rem",
+    },
     fontFamily: [
       "sourceSansPro",
       "IBMPlex",

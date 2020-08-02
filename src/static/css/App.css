@@ -105,6 +105,17 @@ img {
   margin-bottom: 50px;
 }
 
+/*
+@media only screen and (max-width: 800px) {
+  .hero_title {
+    font-size: 10px;
+  }
+}
+*/
+.hero_title {
+  font-size: 1px;
+}
+
 .footer-container {
   background-color: rgb(1, 45, 94);
 }
