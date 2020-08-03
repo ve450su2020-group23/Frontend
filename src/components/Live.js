@@ -57,9 +57,9 @@ export default function Live({ startUrl, duration }) {
   const classes = useStyles();
 
   const [videoCurrentUrl, setVideoCurrentUrl] = useState(startUrl);
-  const [startTimestamp, setStartTimestamp] = useState(0);
+  //const [startTimestamp, setStartTimestamp] = useState(0);
   const [currentTimestamp, setCurrentTimestamp] = useState(0);
-  const [endTimestamp, setEndTimestamp] = useState(0);
+  //const [endTimestamp, setEndTimestamp] = useState(0);
 
   const [startDate, setStartDate] = React.useState(
     new Date(1596126935000 + time_zone_offset)
@@ -74,9 +74,9 @@ export default function Live({ startUrl, duration }) {
 
     if (startUrl) {
       let split_array = startUrl.split("_");
-      setStartTimestamp(parseInt(split_array[split_array.length - 1]));
+      //setStartTimestamp(parseInt(split_array[split_array.length - 1]));
       setCurrentTimestamp(parseInt(split_array[split_array.length - 1]));
-      setEndTimestamp(parseInt(split_array[split_array.length - 1]) + duration);
+      //setEndTimestamp(parseInt(split_array[split_array.length - 1]) + duration);
     }
   }, [startUrl, duration]);
 
@@ -89,6 +89,7 @@ export default function Live({ startUrl, duration }) {
 
     const url =
       server_url + "video?ts=" + parseInt(start_timestamp / 1000).toString();
+    //server_url + "video?ts=" + parseInt(start_timestamp - time_zone_offset / 1000).toString();
     console.log("axios video url: ", url);
 
     let result;
@@ -104,6 +105,9 @@ export default function Live({ startUrl, duration }) {
 
     if (result && result.data) {
       console.log("Fetch video url: ", result.data.video);
+      let split_array = result.data.video.split("_");
+      //setStartTimestamp(parseInt(split_array[split_array.length - 1]));
+      setCurrentTimestamp(parseInt(split_array[split_array.length - 1]));
       setVideoCurrentUrl(result.data.video);
     }
   };
