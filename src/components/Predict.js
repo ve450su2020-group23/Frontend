@@ -154,8 +154,8 @@ export default function Predict(entrance_index = 0) {
           full_data.push({
             Date: date,
             Timestamp: timestamp,
-            Enter: in_array[i],
-            Leave: out_array[i],
+            Enter: parseInt(in_array[i]),
+            Leave: parseInt(out_array[i]),
           });
         }
 
