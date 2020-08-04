@@ -9,6 +9,17 @@ export default function D3() {
     <div className="myContainer">
       <h1>Deliverable 2: People flow statistics prediction</h1>
 
+      <div className="insecure_instruction">
+        (Please allow insecure content for proper display. For Chrome / Edge
+        user: Not Secure Tag (left of url) -> Site Permissions -> Insecure
+        Content: Allow. Or follow this{" "}
+        <a target="_blank" href="https://docs.qq.com/doc/DZldQTFVTR3FSVm16">
+          {" "}
+          doc{" "}
+        </a>
+        . )
+      </div>
+
       <div className="content">
         <div className="column-lg">
           <div className="content-box">

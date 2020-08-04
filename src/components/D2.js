@@ -14,6 +14,16 @@ export default function D2() {
         Deliverable 1: People counting system with automatic entrances detection
         and separated counting
       </h1>
+      <div className="insecure_instruction">
+        (Please allow insecure content for proper display. For Chrome / Edge
+        user: Not Secure Tag (left of url) -> Site Permissions -> Insecure
+        Content: Allow. Or follow this{" "}
+        <a target="_blank" href="https://docs.qq.com/doc/DZldQTFVTR3FSVm16">
+          {" "}
+          doc{" "}
+        </a>
+        . )
+      </div>
 
       <div className="content">
         <div className="column">

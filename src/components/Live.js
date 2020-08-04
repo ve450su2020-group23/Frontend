@@ -62,10 +62,10 @@ export default function Live({ startUrl, duration }) {
   //const [endTimestamp, setEndTimestamp] = useState(0);
 
   const [startDate, setStartDate] = React.useState(
-    new Date(1596126935000 + time_zone_offset)
+    new Date(1595985891000 + time_zone_offset)
   );
   const [startTime, setStartTime] = React.useState(
-    new Date(1596126935000 + time_zone_offset)
+    new Date(1595985891000 + time_zone_offset)
   );
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function Live({ startUrl, duration }) {
     setVideoCurrentUrl(startUrl);
 
     if (startUrl) {
-      let split_array = startUrl.split("_");
+      let split_array = startUrl.split("/");
       //setStartTimestamp(parseInt(split_array[split_array.length - 1]));
       setCurrentTimestamp(parseInt(split_array[split_array.length - 1]));
       //setEndTimestamp(parseInt(split_array[split_array.length - 1]) + duration);
@@ -88,7 +88,9 @@ export default function Live({ startUrl, duration }) {
     }
 
     const url =
-      server_url + "video?ts=" + parseInt(start_timestamp / 1000).toString();
+      server_url +
+      "video?ts=" +
+      parseInt((start_timestamp - time_zone_offset) / 1000).toString();
     //server_url + "video?ts=" + parseInt(start_timestamp - time_zone_offset / 1000).toString();
     console.log("axios video url: ", url);
 
@@ -105,8 +107,10 @@ export default function Live({ startUrl, duration }) {
 
     if (result && result.data) {
       console.log("Fetch video url: ", result.data.video);
-      let split_array = result.data.video.split("_");
+      let split_array = result.data.video.split("/");
       //setStartTimestamp(parseInt(split_array[split_array.length - 1]));
+      console.log(parseInt(split_array[split_array.length - 1]));
+      console.log(result.data.video);
       setCurrentTimestamp(parseInt(split_array[split_array.length - 1]));
       setVideoCurrentUrl(result.data.video);
     }
@@ -150,8 +154,17 @@ export default function Live({ startUrl, duration }) {
 
   console.log("currentVideoUrl: ", videoCurrentUrl);
 
-  var videoStartDate = new Date(currentTimestamp * 1000);
-  var videoEndDate = new Date((currentTimestamp + VIDEO_DURATION) * 1000);
+  console.log(currentTimestamp);
+  var videoStartDate = new Date(currentTimestamp * 1000 + time_zone_offset);
+  var videoEndDate = new Date(
+    (currentTimestamp + VIDEO_DURATION) * 1000 + time_zone_offset
+  );
+
+  console.log("video start date: ");
+  console.log(videoStartDate);
+
+  console.log("video end date: ");
+  console.log(videoEndDate);
 
   var videoTime = (
     <h3>
@@ -170,13 +183,12 @@ export default function Live({ startUrl, duration }) {
       <h3>
         {" "}
         Video time: {(videoStartDate.getMonth() + 1).toString()}.
-        {(videoStartDate.getDate() + 1).toString()}{" "}
+        {videoStartDate.getDate().toString()}{" "}
         {videoStartDate.getHours().toString()}:
         {addZero(videoStartDate.getMinutes()).toString()} -{" "}
         {(videoEndDate.getMonth() + 1).toString()}.
-        {(videoEndDate.getDate() + 1).toString()}{" "}
-        {videoEndDate.getHours().toString()}:
-        {addZero(videoEndDate.getMinutes()).toString()}
+        {videoEndDate.getDate().toString()} {videoEndDate.getHours().toString()}
+        :{addZero(videoEndDate.getMinutes()).toString()}
       </h3>
     );
   }

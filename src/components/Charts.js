@@ -79,16 +79,16 @@ export default function Charts(props) {
   const entrance_index = props.entrance_index;
 
   const [startDate, setStartDate] = React.useState(
-    new Date(1596126935000 + time_zone_offset)
+    new Date(1595985891000 + time_zone_offset)
   );
   const [startTime, setStartTime] = React.useState(
-    new Date(1596126935000 + time_zone_offset)
+    new Date(1595985891000 + time_zone_offset)
   );
   const [endDate, setEndDate] = React.useState(
-    new Date(1596127535000 + time_zone_offset)
+    new Date(1595985891000 + 1000 * 60 * 30 + time_zone_offset)
   );
   const [endTime, setEndTime] = React.useState(
-    new Date(1596127535000 + time_zone_offset)
+    new Date(1595985891000 + 1000 * 60 * 30 + time_zone_offset)
   );
 
   const [showData, setShowData] = React.useState([]);
@@ -154,11 +154,13 @@ export default function Charts(props) {
         var time_interval = parseInt(in_array.length / 10);
 
         for (let i = 0; i < in_array.length; i++) {
-          var date_object = new Date(timestamp_array[i] * 1000);
+          var date_object = new Date(
+            timestamp_array[i] * 1000 + time_zone_offset
+          );
           var date =
             (date_object.getMonth() + 1).toString() +
             "." +
-            (date_object.getDate() + 1).toString();
+            date_object.getDate().toString();
           console.log(date);
 
           var timestamp =
@@ -303,20 +305,6 @@ export default function Charts(props) {
           color="secondary"
           className="time-button"
           onClick={() => {
-            setEndDate(getNowDate());
-            setEndTime(getNowDate());
-            setUpdateWithTime(false);
-            setChartKey(chartKey + 1);
-          }}
-        >
-          Start To Now
-        </Button>
-
-        <Button
-          variant="outlined"
-          color="secondary"
-          className="time-button"
-          onClick={() => {
             console.log(startDate);
             console.log(startTime);
             console.log(endDate);
@@ -334,7 +322,7 @@ export default function Charts(props) {
             setChartKey(chartKey + 1);
           }}
         >
-          Exact Around Start Time
+          Around Start Time
         </Button>
 
         <Button
