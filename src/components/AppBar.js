@@ -78,6 +78,7 @@ export default function MyAppBar(classes) {
   }
   const links = [
     { name: "About", href: "#" },
+    { name: "Demo", href: "#DemoVideo" },
     { name: "Video", href: "#Video" },
     { name: "Deliverables", href: "#D1" },
     { name: "Notes", href: "#Notes" },
@@ -87,6 +88,9 @@ export default function MyAppBar(classes) {
   const navItems = [
     <a href="#" style={menu_item_style}>
       About
+    </a>,
+    <a href="#DemoVideo" style={menu_item_style}>
+      Demo
     </a>,
     <a href="#Video" style={menu_item_style}>
       Video

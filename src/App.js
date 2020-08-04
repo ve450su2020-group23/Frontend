@@ -13,6 +13,7 @@ import Hero from "components/Hero.js";
 import MyAppBar from "components/AppBar.js";
 import Notes from "components/Notes.js";
 import Video from "components/Video.js";
+import DemoVideo from "components/DemoVideo.js";
 
 import "static/css/App.css";
 
@@ -26,6 +27,15 @@ export default function App() {
       <MyAppBar classes={classes} />
 
       <Hero classes={classes} />
+
+      <Container
+        maxWidth="xl"
+        component="main"
+        className={clsx(classes.footer)}
+        id="DemoVideo"
+      >
+        <DemoVideo />
+      </Container>
 
       <Container
         maxWidth="xl"
