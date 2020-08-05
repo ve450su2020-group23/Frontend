@@ -265,7 +265,7 @@ export default function Live({ startUrl, duration }) {
       </div>
 
       <div className="frame-container">
-        <div className="responsive-frame">
+        <div className="raspberry-responsive-frame">
           <video
             muted
             autoPlay
