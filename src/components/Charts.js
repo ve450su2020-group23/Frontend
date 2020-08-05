@@ -325,22 +325,6 @@ export default function Charts(props) {
           Around Start Time
         </Button>
 
-        <Button
-          variant="outlined"
-          color="secondary"
-          className="time-button"
-          onClick={() => {
-            setEndDate(null);
-            setEndTime(null);
-            setStartDate(getNowDate());
-            setStartTime(getNowDate());
-            setUpdateWithTime(true);
-            setChartKey(chartKey + 1);
-          }}
-        >
-          Start From Now
-        </Button>
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
@@ -416,3 +400,21 @@ export default function Charts(props) {
 }
 
 Charts.propTypes = {};
+
+/*
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
+            setEndDate(null);
+            setEndTime(null);
+            setStartDate(getNowDate());
+            setStartTime(getNowDate());
+            setUpdateWithTime(true);
+            setChartKey(chartKey + 1);
+          }}
+        >
+          Start From Now
+        </Button>
+        */
