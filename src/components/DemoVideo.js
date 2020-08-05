@@ -7,16 +7,15 @@ export default function Video() {
       <h1>Demo Video</h1>
       <div className="slide">
         <div className="frame-container">
-          <iframe
-            className="responsive-frame"
-            src="//player.bilibili.com/player.html?aid=498960339&bvid=BV1rK411J7pn&cid=216125044&page=1"
-            scrolling="no"
-            border="0"
-            frameBorder="no"
-            allowFullScreen={true}
-          >
-            {" "}
-          </iframe>
+          <div className="responsive-frame">
+            <video
+              muted
+              autoPlay
+              controls
+              src="https://ve450videos.s3-ap-southeast-1.amazonaws.com/demo_video.mp4"
+              type="video/mp4"
+            ></video>
+          </div>
         </div>
       </div>
     </div>
