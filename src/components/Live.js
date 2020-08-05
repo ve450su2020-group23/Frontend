@@ -80,17 +80,24 @@ export default function Live({ startUrl, duration }) {
     }
   }, [startUrl, duration]);
 
-  const fetchVideoUrl = async () => {
+  const fetchVideoUrl = async (newTimestamp = 0) => {
     let start_timestamp = getNowDate();
 
     if (startDate && startTime && startDate.isValid && startTime.isValid) {
       assignTime(start_timestamp, startDate, startTime);
     }
 
-    const url =
+    if (newTimestamp != 0) {
+      start_timestamp = newTimestamp;
+    }
+
+    let url =
       server_url +
       "video?ts=" +
       parseInt((start_timestamp - time_zone_offset) / 1000).toString();
+    if (newTimestamp !== 0) {
+      url = server_url + "video?ts=" + start_timestamp.toString();
+    }
     //server_url + "video?ts=" + parseInt(start_timestamp - time_zone_offset / 1000).toString();
     console.log("axios video url: ", url);
 
@@ -127,10 +134,14 @@ export default function Live({ startUrl, duration }) {
     }
     */
 
+    let newTimestamp = currentTimestamp - 100;
+    fetchVideoUrl(newTimestamp);
+    /*
     let newTimestamp = currentTimestamp - VIDEO_DURATION;
     let url = VIDEO_URL_PREFIX + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(newTimestamp);
     setVideoCurrentUrl(url);
+    */
     console.log(videoCurrentUrl);
   }
 
@@ -145,11 +156,16 @@ export default function Live({ startUrl, duration }) {
     }
     */
 
+    let newTimestamp = currentTimestamp + 1;
+    fetchVideoUrl(newTimestamp);
+
+    /*
     let newTimestamp = currentTimestamp + VIDEO_DURATION;
     let url = VIDEO_URL_PREFIX + newTimestamp.toString() + ".webm";
     setCurrentTimestamp(currentTimestamp + VIDEO_DURATION);
     setVideoCurrentUrl(url);
     console.log(videoCurrentUrl);
+    */
   }
 
   console.log("currentVideoUrl: ", videoCurrentUrl);
