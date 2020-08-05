@@ -6,7 +6,7 @@ export default function Video() {
     <div className="myContainer">
       <h1>Demo Video</h1>
       <div className="slide">
-        <div className="frame-container">
+        <div className="demo-frame-container">
           <div className="responsive-frame">
             <video
               muted

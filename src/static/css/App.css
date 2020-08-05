@@ -158,6 +158,14 @@ h1 {
 .frame-container {
   position: relative;
   overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 56.25%;
+}
+
+.demo-frame-container {
+  position: relative;
+  overflow: hidden;
   width: 30%;
   margin: 0 auto;
   height: 600px;
