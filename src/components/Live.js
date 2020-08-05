@@ -202,9 +202,6 @@ export default function Live({ startUrl, duration }) {
         {videoStartDate.getDate().toString()}{" "}
         {videoStartDate.getHours().toString()}:
         {addZero(videoStartDate.getMinutes()).toString()} -{" "}
-        {(videoEndDate.getMonth() + 1).toString()}.
-        {videoEndDate.getDate().toString()} {videoEndDate.getHours().toString()}
-        :{addZero(videoEndDate.getMinutes()).toString()}
       </h3>
     );
   }
@@ -290,3 +287,9 @@ export default function Live({ startUrl, duration }) {
 Live.propTypes = {};
 
 //<source src={videoCurrentUrl} key={videoCurrentUrl} type="video/mp4"></source>
+
+/*
+        {(videoEndDate.getMonth() + 1).toString()}.
+        {videoEndDate.getDate().toString()} {videoEndDate.getHours().toString()}
+        :{addZero(videoEndDate.getMinutes()).toString()}
+        */
