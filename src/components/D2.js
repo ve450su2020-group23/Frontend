@@ -39,6 +39,11 @@ export default function D2() {
             />
             *Note: For <b>LINE/BAR/TABLE</b>, the number is{" "}
             <b>the accumulated value from the start of the camera.</b>
+            <div>
+              Right now we only have data in time range{" "}
+              <b>7.29 9:24 - 7.29 9:51</b> for display, please test in this time
+              range.{" "}
+            </div>
           </div>
         </div>
 

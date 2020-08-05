@@ -30,6 +30,10 @@ export default function D3() {
               the accumulate in/out value starting from the beginning of that
               day.{" "}
             </b>{" "}
+            <div>
+              Right now we only have data in time range <b>8.1 - 8.10</b> for
+              display, please test in this time range.{" "}
+            </div>
           </div>
         </div>
       </div>
