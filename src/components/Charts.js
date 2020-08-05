@@ -205,22 +205,33 @@ export default function Charts(props) {
       }
     };
 
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
     const fetchVideoUrl = async (start_timestamp, end_timestamp) => {
       const url =
         server_url + "video?ts=" + parseInt(start_timestamp / 1000).toString();
       console.log("axios video url: ", url);
 
       let result;
-      try {
-        result = await axios.get(url);
-      } catch (error) {
-        console.log(Object.keys(error), error.message);
-        //alert("no video!");
-        console.log("fetch video error: no video");
+      let getVideo = false;
+
+      while (!getVideo) {
+        try {
+          result = await axios.get(url);
+        } catch (error) {
+          console.log(Object.keys(error), error.message);
+          //alert("no video!");
+          console.log("fetch video error: no video");
+          console.log("Video API Sleeping");
+          await sleep(10000);
+        }
+        console.log("video axios finish");
+        console.log("video axios result: " + result);
+        console.log(result);
+        getVideo = true;
       }
-      console.log("video axios finish");
-      console.log("video axios result: " + result);
-      console.log(result);
 
       if (result && result.data) {
         console.log("Fetch video url: ", result.data.video);
@@ -247,8 +258,8 @@ export default function Charts(props) {
 
     if (updateWithTime) {
       fetchVideoUrl(
-        start_timestamp.getTime() - time_zone_offset,
-        end_timestamp.getTime() - time_zone_offset
+        start_timestamp.getTime() - time_zone_offset - 1000 * 60,
+        end_timestamp.getTime()
       );
       var timeID = setInterval(() => {
         fetchData(
@@ -323,6 +334,21 @@ export default function Charts(props) {
           }}
         >
           Around Start Time
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="time-button"
+          onClick={() => {
+            setEndDate(null);
+            setEndTime(null);
+            setStartDate(getNowDate());
+            setStartTime(getNowDate());
+            setUpdateWithTime(true);
+            setChartKey(chartKey + 1);
+          }}
+        >
+          Start From Now
         </Button>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
